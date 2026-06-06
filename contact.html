@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — ThioTerra</title>
+  <meta name="description" content="Start a project with ThioTerra. Tell us what you're building — we'll tell you how far it can go." />
+  <link rel="canonical" href="https://thioterra.com/contact" />
+  <link rel="icon" type="image/png" href="assets/logo/logoV.png" />
+
+  <link rel="preload" href="assets/fonts/Polaris.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/ProjectSpace.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="css/sections.css" />
+  <link rel="stylesheet" href="css/mobile.css" />
+
+  <style>
+    /* ── CONTACT HERO ──────────────────────────────── */
+    .contact-section {
+      position: relative;
+      z-index: var(--z-content);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: calc(var(--nav-height) + 4rem) 0 6rem;
+    }
+
+    .contact-container {
+      max-width: var(--max-width);
+      margin-inline: auto;
+      padding-inline: clamp(1.5rem, 5vw, 4rem);
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8rem;
+      align-items: start;
+    }
+
+    /* ── LEFT — CONTACT INFO ───────────────────────── */
+    .contact-left {
+      position: sticky;
+      top: calc(var(--nav-height) + 3rem);
+    }
+
+    .contact-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 5vw, 5rem);
+      color: var(--color-text);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-title .accent { color: var(--color-accent); }
+
+    .contact-desc {
+      font-size: 1.05rem;
+      color: var(--color-text-muted);
+      line-height: 1.9;
+      margin-bottom: 3rem;
+      max-width: 420px;
+    }
+
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .contact-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .contact-detail-label {
+      font-size: var(--fs-eyebrow);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+
+    .contact-detail-value {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      color: var(--color-text);
+      transition: color var(--transition-fast);
+    }
+
+    .contact-detail-value:hover {
+      color: var(--color-accent);
+    }
+
+    .contact-socials {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-social {
+      padding: 0.5rem 1.2rem;
+      border: 1px solid var(--color-border);
+      border-radius: 100px;
+      font-size: var(--fs-small);
+      color: var(--color-text-muted);
+      transition: all var(--transition-fast);
+    }
+
+    .contact-social:hover {
+      color: var(--color-text);
+      border-color: var(--color-accent);
+      background: var(--color-accent-dim);
+    }
+
+    /* ── RIGHT — FORM ──────────────────────────────── */
+    .contact-form-wrap {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 3rem;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-label {
+      font-size: var(--fs-eyebrow);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      padding: 0.85rem 1rem;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--color-text);
+      transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+      width: 100%;
+      outline: none;
+      -webkit-appearance: none;
+    }
+
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+      color: var(--color-text-muted);
+      opacity: 0.5;
+    }
+
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      border-color: var(--color-accent);
+      box-shadow: 0 0 0 3px var(--color-accent-dim);
+    }
+
+    .form-select {
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%238888AA' stroke-width='1.2' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-size: 10px;
+      padding-right: 2.5rem;
+    }
+
+    .form-select option {
+      background: var(--color-surface);
+      color: var(--color-text);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 140px;
+      line-height: 1.7;
+    }
+
+    .form-submit {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 1.5rem;
+      background: var(--color-accent);
+      color: white;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .form-submit::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: #4d1fff;
+      transform: translateX(-101%);
+      transition: transform var(--transition-mid);
+    }
+
+    .form-submit:hover::before {
+      transform: translateX(0);
+    }
+
+    .form-submit:hover {
+      box-shadow: var(--shadow-accent);
+      transform: translateY(-1px);
+    }
+
+    .form-submit span,
+    .form-submit svg {
+      position: relative;
+      z-index: 1;
+    }
+
+    .form-submit svg {
+      width: 20px;
+      height: 20px;
+      transition: transform var(--transition-fast);
+    }
+
+    .form-submit:hover svg {
+      transform: translateX(4px);
+    }
+
+    .form-note {
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      text-align: center;
+      opacity: 0.6;
+      margin-top: 0.5rem;
+    }
+
+    /* Success state */
+    .form-success {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1rem;
+      padding: 3rem 1rem;
+    }
+
+    .form-success.visible {
+      display: flex;
+    }
+
+    .form-success-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--color-accent-dim);
+      border: 1px solid var(--color-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+
+    .form-success h3 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      color: var(--color-text);
+    }
+
+    .form-success p {
+      font-size: var(--fs-small);
+      color: var(--color-text-muted);
+      max-width: 300px;
+    }
+
+    /* ── RESPONSIVE ────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .contact-container {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+      }
+      .contact-left { position: static; }
+    }
+
+    @media (max-width: 600px) {
+      .form-row { grid-template-columns: 1fr; }
+      .contact-form-wrap { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+  <canvas id="starfield" aria-hidden="true"></canvas>
+  <div class="nebula-container" aria-hidden="true">
+    <div class="nebula-orb orb-1"></div>
+    <div class="nebula-orb orb-2"></div>
+    <div class="nebula-orb orb-3"></div>
+  </div>
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <!-- NAVBAR -->
+  <header class="navbar" role="banner">
+    <nav class="nav-container" aria-label="Main navigation">
+      <a href="index.html" class="nav-logo" aria-label="ThioTerra Home">
+        <img src="assets/logo/logoV.png" alt="ThioTerra logo" class="logo-img" />
+        <span class="logo-text">THIOTERRA</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li class="nav-item has-dropdown">
+          <a href="work.htm" class="nav-link">Work
+            <svg class="dropdown-arrow" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </a>
+          <ul class="dropdown-menu" role="list">
+            <li><a href="work/web.html" class="dropdown-link">Web &amp; Software</a></li>
+            <li><a href="work/marketing.html" class="dropdown-link">Performance Marketing</a></li>
+            <li><a href="work/brand.html" class="dropdown-link">Brand &amp; Identity</a></li>
+            <li><a href="work/content.html" class="dropdown-link">Content &amp; Creative</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <a href="contact.html" class="nav-cta">Let's Talk
+        <svg viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+      </a>
+      <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </nav>
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+      <ul class="mobile-nav-links" role="list">
+        <li><a href="work.htm" class="mobile-nav-link">Work</a></li>
+        <li><a href="about.html" class="mobile-nav-link">About</a></li>
+        <li><a href="contact.html" class="mobile-nav-link">Contact</a></li>
+      </ul>
+      <a href="contact.html" class="mobile-cta">Start the spark →</a>
+    </div>
+  </header>
+
+  <main id="main-content" role="main">
+
+    <section class="contact-section">
+      <div class="contact-container">
+
+        <!-- LEFT -->
+        <div class="contact-left">
+          <p class="section-eyebrow">Get in touch</p>
+          <h1 class="contact-title">Let's<br/><span class="accent">collide.</span></h1>
+          <p class="contact-desc">Tell us what you're building. We'll tell you how far it can go. No jargon, no templates — just a real conversation.</p>
+
+          <div class="contact-details">
+            <div class="contact-detail">
+              <span class="contact-detail-label">Email</span>
+              <a href="/cdn-cgi/l/email-protection#6a020f0606052a1e0203051e0f18180b44090507" class="contact-detail-value"><span class="__cf_email__" data-cfemail="5f373a3333301f2b3736302b3a2d2d3e713c3032">[email&#160;protected]</span></a>
+            </div>
+            <div class="contact-detail">
+              <span class="contact-detail-label">Based in</span>
+              <span class="contact-detail-value">Ahmedabad, Gujarat, India</span>
+            </div>
+            <div class="contact-detail">
+              <span class="contact-detail-label">Response time</span>
+              <span class="contact-detail-value">Within 24 hours</span>
+            </div>
+          </div>
+
+          <div class="contact-socials">
+            <a href="https://instagram.com/thioterra" target="_blank" rel="noopener" class="contact-social">Instagram ↗</a>
+            <a href="https://linkedin.com/company/thioterra" target="_blank" rel="noopener" class="contact-social">LinkedIn ↗</a>
+            <a href="https://behance.net/thioterra" target="_blank" rel="noopener" class="contact-social">Behance ↗</a>
+          </div>
+        </div>
+
+        <!-- RIGHT — FORM -->
+        <div class="contact-form-wrap">
+
+          <form class="contact-form" id="contact-form" novalidate>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name" class="form-label">Your name</label>
+                <input type="text" id="name" name="name" class="form-input" placeholder="Sandipan" required />
+              </div>
+              <div class="form-group">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" id="email" name="email" class="form-input" placeholder="hello@you.com" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="service" class="form-label">What do you need?</label>
+              <select id="service" name="service" class="form-select" required>
+                <option value="" disabled selected>Select a service</option>
+                <option value="web">Web & Software</option>
+                <option value="marketing">Performance Marketing</option>
+                <option value="brand">Brand & Identity</option>
+                <option value="content">Content & Creative</option>
+                <option value="full">Full service — all of the above</option>
+                <option value="other">Something else</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="budget" class="form-label">Budget range</label>
+              <select id="budget" name="budget" class="form-select">
+                <option value="" disabled selected>Select budget range</option>
+                <option value="10-25k">₹10,000 – ₹25,000</option>
+                <option value="25-50k">₹25,000 – ₹50,000</option>
+                <option value="50-100k">₹50,000 – ₹1,00,000</option>
+                <option value="100k+">₹1,00,000+</option>
+                <option value="discuss">Let's discuss</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message" class="form-label">Tell us about your project</label>
+              <textarea id="message" name="message" class="form-textarea" placeholder="What are you building? What problem are you solving? The more you tell us, the better we can help." required></textarea>
+            </div>
+
+            <button type="submit" class="form-submit">
+              <span>Send the spark</span>
+              <svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+
+            <p class="form-note">We'll get back to you within 24 hours. No spam, ever.</p>
+
+          </form>
+
+          <!-- Success state -->
+          <div class="form-success" id="form-success">
+            <div class="form-success-icon">✦</div>
+            <h3>Spark sent.</h3>
+            <p>We've received your message and will get back to you within 24 hours.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">
+            <img src="assets/logo/logoV.png" alt="ThioTerra" class="footer-logo-img" />
+            <span class="logo-text">THIOTERRA</span>
+          </a>
+          <p class="footer-tagline">Where worlds collide.</p>
+        </div>
+        <nav class="footer-nav">
+          <div class="footer-nav-group">
+            <p class="footer-nav-title">Work</p>
+            <ul role="list">
+              <li><a href="work/web.html">Web & Software</a></li>
+              <li><a href="work/marketing.html">Performance Marketing</a></li>
+              <li><a href="work/brand.html">Brand & Identity</a></li>
+              <li><a href="work/content.html">Content & Creative</a></li>
+            </ul>
+          </div>
+          <div class="footer-nav-group">
+            <p class="footer-nav-title">Company</p>
+            <ul role="list">
+              <li><a href="about.html">About</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-nav-group">
+            <p class="footer-nav-title">Connect</p>
+            <ul role="list">
+              <li><a href="https://instagram.com/thioterra" target="_blank" rel="noopener">Instagram</a></li>
+              <li><a href="https://linkedin.com/company/thioterra" target="_blank" rel="noopener">LinkedIn</a></li>
+              <li><a href="https://behance.net/thioterra" target="_blank" rel="noopener">Behance</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© <span id="footer-year"></span> ThioTerra. All rights reserved.</p>
+        <p class="footer-made">Made with intention. Built with precision.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/navbar.js" defer></script>
+
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      this.style.display = 'none';
+      document.getElementById('form-success').classList.add('visible');
+    });
+  </script>
+
+  <script src="js/animations.js" defer></script>
+  <script src="js/footer-reveal.js" defer></script>
+</body>
+</html>

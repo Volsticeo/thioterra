@@ -1,0 +1,21 @@
+{
+  "name": "ThioTerra",
+  "short_name": "ThioTerra",
+  "description": "Design and development agency where two worlds collide.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#08061A",
+  "theme_color": "#08061A",
+  "icons": [
+    {
+      "src": "assets/logo/favicon-32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/logo/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

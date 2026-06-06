@@ -1,0 +1,34 @@
+/* ═══════════════════════════════════════════════════════
+   THIOTERRA — HERO CSS
+   Pure static hero — compass arc removed until redesigned
+═══════════════════════════════════════════════════════ */
+
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+.hero-vignette {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(8,6,26,0.20) 0%,
+    transparent 30%,
+    rgba(8,6,26,0.50) 75%,
+    rgba(8,6,26,0.88) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}

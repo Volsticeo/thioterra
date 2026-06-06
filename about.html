@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — ThioTerra</title>
+  <meta name="description" content="ThioTerra is a design and development agency built at the collision of two worlds. Learn our story, our values, and the people behind the spark." />
+  <link rel="canonical" href="https://thioterra.com/about" />
+  <link rel="icon" type="image/png" href="assets/logo/logoV.png" />
+
+    <link rel="preload" href="assets/fonts/Polaris.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/ProjectSpace.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="css/sections.css" />
+  <link rel="stylesheet" href="css/mobile.css" />
+
+  <style>
+    /* ── ABOUT HERO ────────────────────────────────── */
+    .about-hero {
+      position: relative;
+      z-index: var(--z-content);
+      min-height: 70vh;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: 6rem;
+      padding-top: calc(var(--nav-height) + 5rem);
+      overflow: hidden;
+    }
+
+    .about-hero-content {
+      max-width: var(--max-width);
+      margin-inline: auto;
+      padding-inline: clamp(1.5rem, 5vw, 4rem);
+      width: 100%;
+    }
+
+    .about-hero-title {
+      font-family: var(--font-heading);
+      font-size: clamp(3rem, 7vw, 7rem);
+      color: var(--color-text);
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      margin-bottom: 2rem;
+      max-width: 800px;
+    }
+
+    .about-hero-title .accent { color: var(--color-accent); }
+
+    .about-hero-desc {
+      font-size: clamp(1rem, 1.5vw, 1.2rem);
+      color: var(--color-text-muted);
+      max-width: 560px;
+      line-height: 1.9;
+    }
+
+    /* ── STORY SECTION ─────────────────────────────── */
+    .story-section {
+      position: relative;
+      z-index: var(--z-content);
+      padding: var(--section-padding) 0;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .story-container {
+      max-width: var(--max-width);
+      margin-inline: auto;
+      padding-inline: clamp(1.5rem, 5vw, 4rem);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8rem;
+      align-items: start;
+    }
+
+    .story-left {
+      position: sticky;
+      top: calc(var(--nav-height) + 2rem);
+    }
+
+    .story-heading {
+      font-family: var(--font-heading);
+      font-size: var(--fs-h2);
+      color: var(--color-text);
+      line-height: 1.15;
+      margin-top: 1rem;
+    }
+
+    .story-right {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .story-para {
+      font-size: 1.05rem;
+      color: var(--color-text-muted);
+      line-height: 1.9;
+    }
+
+    .story-para strong {
+      color: var(--color-text);
+      font-weight: 500;
+    }
+
+    /* ── LOGO MEANING ──────────────────────────────── */
+    .logo-section {
+      position: relative;
+      z-index: var(--z-content);
+      padding: var(--section-padding) 0;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .logo-container {
+      max-width: var(--max-width);
+      margin-inline: auto;
+      padding-inline: clamp(1.5rem, 5vw, 4rem);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .logo-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      padding: 0;
+    }
+
+    .logo-visual img {
+      width: 100%;
+      max-width: 480px;
+      height: auto;
+      filter: drop-shadow(0 0 60px rgba(51, 9, 239, 0.7)) drop-shadow(0 0 120px rgba(51, 9, 239, 0.3));
+      animation: logo-breathe 4s ease-in-out infinite;
+    }
+
+    .logo-meaning {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .logo-meaning-item {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+
+    .logo-meaning-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--color-accent-dim);
+      border: 1px solid var(--color-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1rem;
+    }
+
+    .logo-meaning-text h4 {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      color: var(--color-text);
+      margin-bottom: 0.4rem;
+    }
+
+    .logo-meaning-text p {
+      font-size: var(--fs-small);
+      color: var(--color-text-muted);
+      line-height: 1.7;
+    }
+
+    /* ── VALUES ────────────────────────────────────── */
+    .values-section {
+      position: relative;
+      z-index: var(--z-content);
+      padding: var(--section-padding) 0;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .values-container {
+      max-width: var(--max-width);
+      margin-inline: auto;
+      padding-inline: clamp(1.5rem, 5vw, 4rem);
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--color-border);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin-top: 3rem;
+    }
+
+    .value-item {
+      background: var(--color-surface);
+      padding: 2.5rem 2rem;
+      transition: background var(--transition-fast);
+    }
+
+    .value-item:hover {
+      background: var(--color-surface-2);
+    }
+
+    .value-number {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      color: var(--color-accent-dim);
+      line-height: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    .value-title {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      color: var(--color-text);
+      margin-bottom: 0.75rem;
+    }
+
+    .value-desc {
+      font-size: var(--fs-small);
+      color: var(--color-text-muted);
+      line-height: 1.8;
+    }
+
+    /* ── TEAM SECTION ──────────────────────────────── */
+    .team-section {
+      position: relative;
+      z-index: var(--z-content);
+      padding: var(--section-padding) 0;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .team-container {
+      max-width: var(--max-width);
+      margin-inline: auto;
+      padding-inline: clamp(1.5rem, 5vw, 4rem);
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    /* Flip card wrapper */
+    .team-card {
+      perspective: 1000px;
+      height: 460px;
+      cursor: pointer;
+    }
+
+    .team-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.65s cubic-bezier(0.4, 0.2, 0.2, 1);
+    }
+
+    .team-card:hover .team-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    /* Both faces */
+    .team-card-front,
+    .team-card-back {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border);
+      overflow: hidden;
+    }
+
+    /* FRONT */
+    .team-card-front {
+      background: var(--color-surface);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      padding: 1.5rem 1.5rem 3rem;
+      transition: border-color var(--transition-mid);
+      overflow: hidden;
+    }
+
+    .team-card:hover .team-card-front {
+      border-color: var(--color-accent-dim);
+    }
+
+    .team-photo-placeholder {
+      width: 180px;
+      height: 180px;
+      border-radius: 20px;
+      background: var(--color-surface-2);
+      border: 3px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      color: var(--color-accent);
+      letter-spacing: 0.05em;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .team-photo-placeholder img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 20px;
+    }
+
+    .team-card-info {
+      text-align: center;
+    }
+
+    .team-name {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      color: var(--color-text);
+      margin-bottom: 0.4rem;
+      line-height: 1.2;
+    }
+
+    .team-role {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      line-height: 1.5;
+    }
+
+    .team-flip-hint {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      opacity: 0.5;
+      position: absolute;
+      bottom: 1rem;
+    }
+
+    /* BACK */
+    .team-card-back {
+      background: var(--color-surface);
+      transform: rotateY(180deg);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1rem;
+      padding: 1.5rem 1.5rem;
+      border-color: var(--color-accent-dim);
+      background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-bg) 100%);
+    }
+
+    .team-bio {
+      font-size: 0.88rem;
+      color: var(--color-text-muted);
+      line-height: 1.8;
+    }
+
+    .team-socials {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .team-social-link {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--color-border);
+      border-radius: 50%;
+      color: var(--color-text-muted);
+      transition: color var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
+      flex-shrink: 0;
+    }
+
+    .team-social-link svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .team-social-link:hover {
+      color: #16192C;
+      border-color: var(--color-accent);
+      background: var(--color-accent);
+    }
+
+    @media (max-width: 1024px) {
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .team-grid { grid-template-columns: 1fr; }
+      .team-card { height: 340px; }
+    }
+
+    /* ── TOOLS STACK ───────────────────────────────── */
+    .stack-section {
+      position: relative;
+      z-index: var(--z-content);
+      padding: var(--section-padding) 0;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .stack-container {
+      max-width: var(--max-width);
+      margin-inline: auto;
+      padding-inline: clamp(1.5rem, 5vw, 4rem);
+    }
+
+    .stack-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 2.5rem;
+    }
+
+    .stack-tag {
+      padding: 0.5rem 1.2rem;
+      border: 1px solid var(--color-border);
+      border-radius: 100px;
+      font-size: var(--fs-small);
+      color: var(--color-text-muted);
+      transition: color var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
+    }
+
+    .stack-tag:hover {
+      color: var(--color-text);
+      border-color: var(--color-accent);
+      background: var(--color-accent-dim);
+    }
+
+    /* ── RESPONSIVE ────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .story-container,
+      .logo-container { grid-template-columns: 1fr; gap: 3rem; }
+      .story-left { position: static; }
+      .values-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .about-hero-title { font-size: clamp(2.5rem, 10vw, 4rem); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+  <canvas id="starfield" aria-hidden="true"></canvas>
+  <div class="nebula-container" aria-hidden="true">
+    <div class="nebula-orb orb-1"></div>
+    <div class="nebula-orb orb-2"></div>
+    <div class="nebula-orb orb-3"></div>
+  </div>
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <!-- NAVBAR -->
+  <header class="navbar" role="banner">
+    <nav class="nav-container" aria-label="Main navigation">
+      <a href="index.html" class="nav-logo" aria-label="ThioTerra Home">
+        <img src="assets/logo/logoV.png" alt="ThioTerra logo" class="logo-img" />
+        <span class="logo-text">THIOTERRA</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li class="nav-item has-dropdown">
+          <a href="work.htm" class="nav-link">Work
+            <svg class="dropdown-arrow" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </a>
+          <ul class="dropdown-menu" role="list">
+                        <li><a href="work/web.html" class="dropdown-link">Web &amp; Software</a></li>
+            <li><a href="work/marketing.html" class="dropdown-link">Performance Marketing</a></li>
+            <li><a href="work/brand.html" class="dropdown-link">Brand &amp; Identity</a></li>
+            <li><a href="work/content.html" class="dropdown-link">Content &amp; Creative</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <a href="contact.html" class="nav-cta">Let's Talk
+        <svg viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+      </a>
+      <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </nav>
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+      <ul class="mobile-nav-links" role="list">
+        <li><a href="work.htm" class="mobile-nav-link">Work</a></li>
+        <li><a href="about.html" class="mobile-nav-link">About</a></li>
+        <li><a href="contact.html" class="mobile-nav-link">Contact</a></li>
+      </ul>
+      <a href="contact.html" class="mobile-cta">Start the spark →</a>
+    </div>
+  </header>
+
+  <main id="main-content" role="main">
+
+    <!-- HERO -->
+    <section class="about-hero">
+      <div class="about-hero-content">
+        <p class="section-eyebrow">About ThioTerra</p>
+        <h1 class="about-hero-title">Born from<br/>the <span class="accent">collision.</span></h1>
+        <p class="about-hero-desc">ThioTerra isn't a service provider. It's a belief — that design without development is decoration, and development without design is machinery.</p>
+      </div>
+    </section>
+
+    <!-- STORY -->
+    <section class="story-section">
+      <div class="story-container">
+        <div class="story-left">
+          <p class="section-eyebrow">Our story</p>
+          <h2 class="story-heading">Where worlds converge.</h2>
+        </div>
+        <div class="story-right">
+          <p class="story-para">ThioTerra was never just a company. It's a belief — that <strong>design without development is decoration</strong>, and development without design is machinery. We built a place where neither compromises. Where the collision is the point. Where the spark is the standard.</p>
+          <p class="story-para">We started with a simple observation: most agencies split their teams. Designers in one room, developers in another, each speaking a different language. The client ends up with something that looks good in a presentation and breaks in production.</p>
+          <p class="story-para"><strong>We do it differently.</strong> Design and development happen together, argue together, and ship together. That tension — the collision — is what produces something neither discipline could create alone.</p>
+          <p class="story-para">We're not here to churn output. Every pixel, every line of code, every campaign is held to a standard that makes us proud before it makes you pay. That's not a tagline. That's how we sleep at night.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOGO MEANING -->
+    <section class="logo-section">
+      <div class="logo-container">
+        <div class="logo-visual">
+          <img src="assets/logo/logoV.png" alt="ThioTerra logo" />
+        </div>
+        <div class="logo-meaning">
+          <p class="section-eyebrow">The mark</p>
+          <h2 class="story-heading">Every detail is intentional.</h2>
+          <div class="logo-meaning-item">
+            <div class="logo-meaning-icon">○</div>
+            <div class="logo-meaning-text">
+              <h4>Two circles — two worlds</h4>
+              <p>Design and development. Two distinct disciplines, each complete on their own, brought into deliberate proximity.</p>
+            </div>
+          </div>
+          <div class="logo-meaning-item">
+            <div class="logo-meaning-icon">✦</div>
+            <div class="logo-meaning-text">
+              <h4>The starburst — the collision</h4>
+              <p>Where the two circles meet, a four-pointed star erupts. Not a compromise. A supernova. Grand, beautiful, and fierce.</p>
+            </div>
+          </div>
+          <div class="logo-meaning-item">
+            <div class="logo-meaning-icon">◈</div>
+            <div class="logo-meaning-text">
+              <h4>Project Space — the font</h4>
+              <p>Inspired by black holes and space tourism. Stretched, cosmic, slightly beyond ordinary — exactly where ThioTerra lives.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VALUES -->
+    <section class="values-section">
+      <div class="values-container">
+        <p class="section-eyebrow">What drives us</p>
+        <h2 class="why-heading">Three things we never compromise on.</h2>
+        <div class="values-grid">
+          <div class="value-item">
+            <div class="value-number">01</div>
+            <h3 class="value-title">Listen first</h3>
+            <p class="value-desc">Most agencies hear the brief. We hear what's behind it — the ambition, the fear, the version of success only you can see.</p>
+          </div>
+          <div class="value-item">
+            <div class="value-number">02</div>
+            <h3 class="value-title">Zero compromise</h3>
+            <p class="value-desc">Design and development don't negotiate at ThioTerra. They collide. What comes out the other side is better than either could produce alone.</p>
+          </div>
+          <div class="value-item">
+            <div class="value-number">03</div>
+            <h3 class="value-title">Fierce craft</h3>
+            <p class="value-desc">Every pixel, every line of code, every campaign — held to a standard that makes us proud before it makes you pay.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEAM -->
+    <section class="team-section">
+      <div class="team-container">
+        <p class="section-eyebrow">The people</p>
+        <h2 class="why-heading">Who we are.</h2>
+        <div class="team-grid">
+
+          <!-- Sandipan -->
+          <div class="team-card">
+            <div class="team-card-inner">
+              <div class="team-card-front">
+                <div class="team-photo-placeholder"><img src="assets/images/sandipan.webp" alt="Sandipan Saha" style="object-position: center top;" onerror="this.parentElement.textContent='SP'"/></div>
+                <div class="team-card-info">
+                  <h3 class="team-name">Sandipan Saha</h3>
+                  <p class="team-role">Founder & Creative Director</p>
+                </div>
+                <span class="team-flip-hint">Hover to know more</span>
+              </div>
+              <div class="team-card-back">
+                <p class="team-bio">Developer, designer, and the person who decided the two should stop fighting and start colliding. Built ThioTerra to prove that great digital work doesn't require a choice between how it looks and how it works.</p>
+                <p class="team-bio">When not building things for clients, found playing Indian bamboo flute, managing Minecraft servers, or reading about brand mythology at 2am.</p>
+                <div class="team-socials">
+                  <a href="https://thioterra.com" target="_blank" rel="noopener" class="team-social-link" aria-label="Website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></a>
+                  <a href="https://linkedin.com/in/sandipan-saha" target="_blank" rel="noopener" class="team-social-link" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+                  <a href="https://instagram.com/thioterra" target="_blank" rel="noopener" class="team-social-link" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Anukkriti -->
+          <div class="team-card">
+            <div class="team-card-inner">
+              <div class="team-card-front">
+                <div class="team-photo-placeholder"><img src="assets/images/anukkriti.webp" alt="Anukkriti Poovannan" onerror="this.parentElement.textContent='AP'"/></div>
+                <div class="team-card-info">
+                  <h3 class="team-name">Anukkriti Poovannan</h3>
+                  <p class="team-role">Co-Founder & Illustration Director</p>
+                </div>
+                <span class="team-flip-hint">Hover to know more</span>
+              </div>
+              <div class="team-card-back">
+                <p class="team-bio">Animator and illustrator focused on building clear, engaging visuals. Worked on everything from social media to large-scale designs, while helping bridge the gap between creative and technical teams.</p>
+                <p class="team-bio">Apart from sketching on every surface I can find, I also spend my time singing or listening to music, writing scripts for films I’ll never make, and consuming true crime content.</p>
+                <div class="team-socials">
+                  <a href="#" target="_blank" rel="noopener" class="team-social-link" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+                  <a href="#" target="_blank" rel="noopener" class="team-social-link" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+                  <a href="#" target="_blank" rel="noopener" class="team-social-link" aria-label="Behance"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.5 11.25c.97 0 1.75-.78 1.75-1.75S8.47 7.75 7.5 7.75H3v3.5h4.5zm.25 2.25H3v3.75h4.75c1.1 0 2-.9 2-2s-.9-1.75-2-1.75zM1 6h7.5C10.43 6 12 7.57 12 9.5c0 1.08-.5 2.04-1.27 2.68C12.03 12.77 13 14 13 15.5 13 17.43 11.43 19 9.5 19H1V6zm14.5 2h6v1.5h-6V8zM15 14c0-2.76 2.24-5 5-5 2.5 0 4.5 1.8 4.95 4.17.08.43.05.83.05.83H17c.23 1.13 1.2 2 2.33 2 .8 0 1.5-.4 1.9-1h2.5C23.17 16.9 21.22 18 19 18c-2.76 0-4-2.24-4-4zm2.17-1h5.66C22.5 12.03 21.38 11 20 11c-1.3 0-2.47.9-2.83 2z"/></svg></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Daisy -->
+          <div class="team-card">
+            <div class="team-card-inner">
+              <div class="team-card-front">
+                <div class="team-photo-placeholder"><img src="assets/images/daisy.webp" alt="Daisy Gupta" onerror="this.parentElement.textContent='DG'"/></div>
+                <div class="team-card-info">
+                  <h3 class="team-name">Daisy Gupta</h3>
+                  <p class="team-role">Brand Strategist & Content Architect</p>
+                </div>
+                <span class="team-flip-hint">Hover to know more</span>
+              </div>
+              <div class="team-card-back">
+                <p class="team-bio">I like turning ideas into stories that people actually stop and care about, using a mix of content, design, and a bit of psychology along the way.</p>
+                <p class="team-bio">Outside of that, I’m either deep into reels (saving way more than I’ll ever watch), planning trips I may or may not take, sleeping, or getting lost in random creative rabbit holes.</p>
+                <div class="team-socials">
+                  <a href="#" target="_blank" rel="noopener" class="team-social-link" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+                  <a href="#" target="_blank" rel="noopener" class="team-social-link" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+                  <a href="#" target="_blank" rel="noopener" class="team-social-link" aria-label="Behance"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.5 11.25c.97 0 1.75-.78 1.75-1.75S8.47 7.75 7.5 7.75H3v3.5h4.5zm.25 2.25H3v3.75h4.75c1.1 0 2-.9 2-2s-.9-1.75-2-1.75zM1 6h7.5C10.43 6 12 7.57 12 9.5c0 1.08-.5 2.04-1.27 2.68C12.03 12.77 13 14 13 15.5 13 17.43 11.43 19 9.5 19H1V6zm14.5 2h6v1.5h-6V8zM15 14c0-2.76 2.24-5 5-5 2.5 0 4.5 1.8 4.95 4.17.08.43.05.83.05.83H17c.23 1.13 1.2 2 2.33 2 .8 0 1.5-.4 1.9-1h2.5C23.17 16.9 21.22 18 19 18c-2.76 0-4-2.24-4-4zm2.17-1h5.66C22.5 12.03 21.38 11 20 11c-1.3 0-2.47.9-2.83 2z"/></svg></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Nabarun -->
+          <div class="team-card">
+            <div class="team-card-inner">
+              <div class="team-card-front">
+                <div class="team-photo-placeholder"><img src="assets/images/nabarun.webp" alt="Nabarun Chakraborti" onerror="this.parentElement.textContent='NC'"/></div>
+                <div class="team-card-info">
+                  <h3 class="team-name">Nabarun Chakraborti</h3>
+                  <p class="team-role">Visual Production Lead</p>
+                </div>
+                <span class="team-flip-hint">Hover to know more</span>
+              </div>
+              <div class="team-card-back">
+                <p class="team-bio">At Thioterra, I bring storyboards to cool visuals through After Effects and Premiere Pro. Wizardry with keyframed visuals and impactful sound design is my strong-hold.</p>
+                <p class="team-bio">I love to draw on my leisure time, working out and self care keeps me energized also treating myself by cooking tasty dishes.</p>
+                <div class="team-socials">
+                  <a href="#" target="_blank" rel="noopener" class="team-social-link" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+                  <a href="#" target="_blank" rel="noopener" class="team-social-link" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TECH STACK -->
+    <section class="stack-section">
+      <div class="stack-container">
+        <p class="section-eyebrow">Tools & Technologies</p>
+        <h2 class="why-heading">What we work with.</h2>
+        <div class="stack-grid">
+          <span class="stack-tag">HTML / CSS / JS</span>
+          <span class="stack-tag">React</span>
+          <span class="stack-tag">PHP</span>
+          <span class="stack-tag">Laravel</span>
+          <span class="stack-tag">Firebase</span>
+          <span class="stack-tag">Node.js</span>
+          <span class="stack-tag">Python</span>
+          <span class="stack-tag">Figma</span>
+          <span class="stack-tag">Adobe Illustrator</span>
+          <span class="stack-tag">Adobe Premiere</span>
+          <span class="stack-tag">After Effects</span>
+          <span class="stack-tag">GSAP</span>
+          <span class="stack-tag">MySQL</span>
+          <span class="stack-tag">REST APIs</span>
+          <span class="stack-tag">Meta Ads Manager</span>
+          <span class="stack-tag">Google Ads</span>
+          <span class="stack-tag">Hostinger</span>
+          <span class="stack-tag">GitHub</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="cta">
+      <div class="cta-container">
+        <h2 class="cta-heading">Ready to collide?</h2>
+        <p class="cta-subtext">Tell us what you're building.<br/>We'll tell you how far it can go.</p>
+        <a href="contact.html" class="cta-button">
+          <span>Start the spark</span>
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">
+            <img src="assets/logo/logoV.png" alt="ThioTerra" class="footer-logo-img" />
+            <span class="logo-text">THIOTERRA</span>
+          </a>
+          <p class="footer-tagline">Where worlds collide.</p>
+        </div>
+        <nav class="footer-nav">
+          <div class="footer-nav-group">
+            <p class="footer-nav-title">Work</p>
+            <ul role="list">
+              <li><a href="work/web.html">Web & Software</a></li>
+              <li><a href="work/marketing.html">Performance Marketing</a></li>
+              <li><a href="work/brand.html">Brand & Identity</a></li>
+              <li><a href="work/content.html">Content & Creative</a></li>
+            </ul>
+          </div>
+          <div class="footer-nav-group">
+            <p class="footer-nav-title">Company</p>
+            <ul role="list">
+              <li><a href="about.html">About</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-nav-group">
+            <p class="footer-nav-title">Connect</p>
+            <ul role="list">
+              <li><a href="https://instagram.com/thioterra" target="_blank" rel="noopener">Instagram</a></li>
+              <li><a href="https://linkedin.com/company/thioterra" target="_blank" rel="noopener">LinkedIn</a></li>
+              <li><a href="https://behance.net/thioterra" target="_blank" rel="noopener">Behance</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© <span id="footer-year"></span> ThioTerra. All rights reserved.</p>
+        <p class="footer-made">Made with intention. Built with precision.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/navbar.js" defer></script>
+  <script src="js/animations.js" defer></script>
+  <script src="js/footer-reveal.js" defer></script>
+</body>
+</html>

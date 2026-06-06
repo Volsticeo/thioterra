@@ -1,0 +1,444 @@
+/* ═══════════════════════════════════════════════════════
+   THIOTERRA — WORK PAGE CSS
+   Shared styles for all 4 category pages
+═══════════════════════════════════════════════════════ */
+
+@font-face {
+  font-family: 'Polaris';
+  src: url('../assets/fonts/Polaris.otf') format('opentype'),
+       url('../assets/fonts/Polaris.ttf') format('truetype'),
+       url('../assets/fonts/Polaris.woff2') format('woff2'),
+       url('../assets/fonts/Polaris.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─── WORK HERO MASCOT ───────────────────────────────── */
+.work-hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+}
+
+.work-hero-mascot {
+  position: absolute;
+  right: clamp(6rem, 12vw, 16rem);
+  bottom: 50%;
+  transform: translateY(50%);
+  pointer-events: none;
+  animation: work-mascot-float 3.5s ease-in-out infinite;
+}
+
+.work-hero-mascot-img {
+  width: clamp(160px, 18vw, 260px);
+  height: auto;
+  display: block;
+}
+
+@keyframes work-mascot-float {
+  0%, 100% { transform: translateY(50%) translateY(0px) rotate(0deg); }
+  50%       { transform: translateY(50%) translateY(-18px) rotate(5deg); }
+}
+
+@media (max-width: 768px) {
+  .work-hero-mascot { display: none; }
+}
+
+
+.work-hero {
+  position: relative;
+  z-index: var(--z-content);
+  min-height: 60vh;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 5rem;
+  padding-top: calc(var(--nav-height) + 4rem);
+  overflow: hidden;
+}
+
+.work-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* Accent color line — unique per category */
+.work-hero-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  width: 0;
+  background: linear-gradient(to right, var(--color-accent), transparent);
+  animation: line-grow 1.2s ease forwards 0.5s;
+}
+
+@keyframes line-grow {
+  to { width: 60%; }
+}
+
+.work-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: clamp(1.5rem, 5vw, 4rem);
+  width: 100%;
+}
+
+.work-hero-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--fs-eyebrow);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 2rem;
+  transition: color var(--transition-fast), gap var(--transition-fast);
+}
+
+.work-hero-back:hover {
+  color: var(--color-accent);
+  gap: 0.8rem;
+}
+
+.work-hero-eyebrow {
+  font-size: var(--fs-eyebrow);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 1rem;
+}
+
+.work-hero-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 6vw, 6rem);
+  color: var(--color-text);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+}
+
+.work-hero-desc {
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  color: var(--color-text-muted);
+  max-width: 600px;
+  line-height: 1.8;
+}
+
+/* ─── WORK STATS BAR ─────────────────────────────────── */
+.work-stats {
+  position: relative;
+  z-index: var(--z-content);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  padding: 2rem 0;
+}
+
+.work-stats-container {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: clamp(1.5rem, 5vw, 4rem);
+  display: flex;
+  gap: 4rem;
+  flex-wrap: wrap;
+}
+
+.work-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.work-stat-number {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  color: var(--color-text);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.work-stat-label {
+  font-size: var(--fs-eyebrow);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+/* ─── PROJECT GRID ───────────────────────────────────── */
+.projects-section {
+  position: relative;
+  z-index: var(--z-content);
+  padding: var(--section-padding) 0;
+}
+
+.projects-container {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: clamp(1.5rem, 5vw, 4rem);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+/* Featured project — full width */
+.project-card.featured {
+  grid-column: 1 / -1;
+}
+
+.project-card {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: transform var(--transition-mid), box-shadow var(--transition-mid), border-color var(--transition-mid);
+  group: true;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--color-accent-dim);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.5), 0 0 0 1px var(--color-accent-dim);
+}
+
+/* Project image */
+.project-img {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-surface-2);
+}
+
+.project-card.featured .project-img {
+  aspect-ratio: 16/7;
+}
+
+.project-card:not(.featured) .project-img {
+  aspect-ratio: 4/3;
+}
+
+.project-img-inner {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--color-surface-2);
+  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.project-card:hover .project-img-inner {
+  transform: scale(1.04);
+}
+
+/* Placeholder gradient when no image */
+.project-img-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholder-icon {
+  width: 48px;
+  height: 48px;
+  opacity: 0.2;
+}
+
+/* Project info */
+.project-info {
+  padding: 1.75rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.project-card.featured .project-info {
+  padding: 2rem 2.5rem;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.project-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.project-tag {
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  background: var(--color-accent-dim);
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+}
+
+.project-year {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.08em;
+}
+
+.project-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.project-subtitle {
+  font-size: var(--fs-small);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+.project-arrow {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.project-card:hover .project-arrow {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  transform: rotate(45deg);
+}
+
+.project-arrow svg {
+  width: 16px;
+  height: 16px;
+  color: var(--color-text);
+}
+
+/* NDA / Confidential card */
+.project-card.confidential .project-img-inner {
+  filter: blur(12px) brightness(0.4);
+}
+
+.project-card.confidential .confidential-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.confidential-badge-text {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+/* ─── CAPABILITIES SECTION ───────────────────────────── */
+.capabilities-section {
+  position: relative;
+  z-index: var(--z-content);
+  padding: var(--section-padding) 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.capabilities-container {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: clamp(1.5rem, 5vw, 4rem);
+}
+
+.capabilities-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--color-border);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-top: 3rem;
+}
+
+.capability-item {
+  background: var(--color-surface);
+  padding: 2rem 1.5rem;
+  transition: background var(--transition-fast);
+}
+
+.capability-item:hover {
+  background: var(--color-surface-2);
+}
+
+.capability-icon {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.capability-title {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+}
+
+.capability-desc {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+/* ─── CTA STRIP — reused from main ──────────────────── */
+/* Already defined in sections.css */
+
+/* ─── RESPONSIVE ─────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card.featured {
+    grid-column: auto;
+  }
+
+  .capabilities-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .work-stats-container {
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .work-hero-title {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+
+  .project-card.featured .project-info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .capabilities-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,305 @@
+/* ═══════════════════════════════════════════════════════
+   THIOTERRA — MOBILE CSS
+   Responsive overrides — tablet (768px) and mobile (480px)
+   Philosophy: Same brand, different choreography.
+   No 3D barrel on mobile — replaced with swipe card stack.
+   Semicircle replaced with clean numbered list.
+═══════════════════════════════════════════════════════ */
+
+/* ─── TABLET — max 1024px ────────────────────────────── */
+@media (max-width: 1024px) {
+
+  /* Why grid — 2 columns on tablet */
+  .why-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Work grid — 2 columns */
+  .work-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Services — stack on smaller screens */
+  .services-container {
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .services-left {
+    flex: 0 0 100%;
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .services-dynamic {
+    margin-inline: auto;
+  }
+
+  .dynamic-text {
+    max-width: 100%;
+  }
+
+  /* Hide desktop semicircle on tablet — show mobile list */
+  .semicircle-wrapper {
+    width: 100%;
+    height: auto;
+    justify-content: center;
+    flex: 0 0 100%;
+    overflow: hidden;
+  }
+
+  .semicircle-slices,
+  .semicircle-hub {
+    display: none;
+  }
+
+  .services-mobile-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+
+  .service-mobile-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+    transition: background var(--transition-fast), padding-left var(--transition-fast);
+  }
+
+  .service-mobile-item:last-child {
+    border-bottom: none;
+  }
+
+  .service-mobile-item:hover {
+    background: var(--color-accent-dim);
+    padding-left: 2rem;
+  }
+
+  .smi-number {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--color-accent);
+    width: 28px;
+    flex-shrink: 0;
+  }
+
+  .smi-label {
+    flex: 1;
+    font-size: 1rem;
+    color: var(--color-text);
+    padding-left: 0.75rem;
+  }
+
+  .smi-arrow {
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    transition: transform var(--transition-fast), color var(--transition-fast);
+  }
+
+  .service-mobile-item:hover .smi-arrow {
+    transform: translateX(4px);
+    color: var(--color-accent);
+  }
+
+  /* Footer nav — wrap better */
+  .footer-top {
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .footer-nav {
+    gap: 2.5rem;
+  }
+}
+
+/* ─── MOBILE — max 768px ─────────────────────────────── */
+@media (max-width: 768px) {
+
+  /* Hero — mobile barrel becomes vertical swipe stack */
+  .barrel-scene {
+    perspective: none;
+  }
+
+  /* Why grid — single column */
+  .why-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Work grid — single column */
+  .work-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Work header — stack */
+  .work-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Footer bottom — stack */
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  /* Footer nav — 2 column grid */
+  .footer-nav {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+/* ─── SMALL MOBILE — max 480px ───────────────────────── */
+@media (max-width: 480px) {
+
+  :root {
+    --section-padding: 3.5rem;
+  }
+
+  /* Navbar */
+  .logo-text {
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+  }
+
+  /* Slide content — tighter on small screens */
+  .slide-content {
+    padding-inline: 1.5rem;
+  }
+
+  .slide-headline {
+    font-size: clamp(2rem, 9vw, 3rem);
+  }
+
+  /* Services */
+  .services-heading {
+    font-size: clamp(1.6rem, 7vw, 2.5rem);
+  }
+
+  /* Why cards — slightly smaller padding */
+  .why-card {
+    padding: 2rem 1.5rem;
+  }
+
+  /* Testimonial text */
+  .testimonial-text {
+    font-size: clamp(1rem, 5vw, 1.4rem);
+  }
+
+  /* CTA */
+  .cta-heading {
+    font-size: clamp(1.8rem, 7vw, 2.5rem);
+  }
+
+  .cta-button {
+    width: 100%;
+    justify-content: center;
+    padding: 1rem 2rem;
+  }
+
+  /* Footer nav — single column */
+  .footer-nav {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  /* Mobile menu links — slightly smaller */
+  .mobile-nav-link {
+    font-size: clamp(1.6rem, 7vw, 2.2rem);
+  }
+}
+
+/* ─── MOBILE HERO — CARD STACK ALTERNATIVE ───────────── */
+/*
+   On mobile, the 3D barrel is replaced with a
+   simple vertically stacked slide deck that the
+   user taps/swipes through. Same content, simpler motion.
+   GSAP handles the fade+slide transitions.
+*/
+@media (max-width: 768px) {
+
+  .barrel-pin-wrapper {
+    height: 100svh; /* Use svh for mobile — accounts for browser chrome */
+  }
+
+  .barrel-slide {
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  /* Mobile-specific slide content alignment */
+  .slide-content {
+    text-align: left;
+    padding-inline: 2rem;
+    padding-bottom: 6rem; /* Room for slide indicator at bottom */
+  }
+
+  .slide-eyebrow {
+    text-align: left;
+  }
+
+  /* Mobile swipe indicator */
+  .barrel-scene::after {
+    content: 'Tap to continue';
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    opacity: 0.6;
+    white-space: nowrap;
+  }
+
+  /* Scroll hint hidden on mobile */
+  .scroll-hint {
+    display: none;
+  }
+}
+
+/* ─── REDUCED MOTION ─────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .nebula-orb,
+  .semicircle-slices,
+  .footer-logo-mark,
+  .semicircle-hub {
+    animation: none;
+  }
+}
+
+/* ─── LANDSCAPE MOBILE ───────────────────────────────── */
+@media (max-height: 500px) and (orientation: landscape) {
+
+  .barrel-pin-wrapper {
+    height: 100svh;
+  }
+
+  .slide-content {
+    padding-bottom: 3rem;
+  }
+
+  .slide-headline {
+    font-size: clamp(1.4rem, 5vh, 2.5rem);
+  }
+
+  .nav-height {
+    --nav-height: 56px;
+  }
+}

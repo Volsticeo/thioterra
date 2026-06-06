@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Web & Software — ThioTerra</title>
+  <meta name="description" content="Websites and software built by ThioTerra. Interfaces that think ahead, systems your users never have to think about." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://thioterra.com/work/web" />
+  <link rel="icon" type="image/png" href="../assets/logo/logoV.png" />
+
+    <link rel="preload" href="../assets/fonts/Polaris.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="../assets/fonts/ProjectSpace.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../css/global.css" />
+  <link rel="stylesheet" href="../css/navbar.css" />
+  <link rel="stylesheet" href="../css/sections.css" />
+  <link rel="stylesheet" href="../css/work.css" />
+  <link rel="stylesheet" href="../css/mobile.css" />
+</head>
+<body>
+
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+  <canvas id="starfield" aria-hidden="true"></canvas>
+  <div class="nebula-container" aria-hidden="true">
+    <div class="nebula-orb orb-1"></div>
+    <div class="nebula-orb orb-2"></div>
+    <div class="nebula-orb orb-3"></div>
+  </div>
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <!-- NAVBAR -->
+  <header class="navbar" role="banner">
+    <nav class="nav-container" aria-label="Main navigation">
+      <a href="../index.html" class="nav-logo" aria-label="ThioTerra Home">
+        <img src="../assets/logo/logoV.png" alt="ThioTerra logo" class="logo-img" />
+        <span class="logo-text">THIOTERRA</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li class="nav-item has-dropdown">
+          <a href="../work.html" class="nav-link" aria-haspopup="true">
+            Work
+            <svg class="dropdown-arrow" viewBox="0 0 10 6" fill="none">
+              <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+          </a>
+          <ul class="dropdown-menu" role="list">
+                        <li><a href="../work/web.html" class="dropdown-link">Web &amp; Software</a></li>
+            <li><a href="../work/marketing.html" class="dropdown-link">Performance Marketing</a></li>
+            <li><a href="../work/brand.html" class="dropdown-link">Brand &amp; Identity</a></li>
+            <li><a href="../work/content.html" class="dropdown-link">Content &amp; Creative</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a href="../about.html" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="../contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <a href="../contact.html" class="nav-cta">
+        Let's Talk
+        <svg viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+      </a>
+      <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </nav>
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+      <ul class="mobile-nav-links" role="list">
+        <li><a href="../work.html" class="mobile-nav-link">Work</a></li>
+        <li class="mobile-submenu-group">
+          <span class="mobile-submenu-label">— Services</span>
+          <ul role="list">
+                        <li><a href="../work/web.html" class="mobile-sub-link">Web &amp; Software</a></li>
+            <li><a href="../work/marketing.html" class="mobile-sub-link">Performance Marketing</a></li>
+            <li><a href="../work/brand.html" class="mobile-sub-link">Brand &amp; Identity</a></li>
+            <li><a href="../work/content.html" class="mobile-sub-link">Content &amp; Creative</a></li>
+          </ul>
+        </li>
+        <li><a href="../about.html" class="mobile-nav-link">About</a></li>
+        <li><a href="../contact.html" class="mobile-nav-link">Contact</a></li>
+      </ul>
+      <a href="../contact.html" class="mobile-cta">Start the spark →</a>
+    </div>
+  </header>
+
+  <main id="main-content" role="main">
+
+    <!-- HERO -->
+    <section class="work-hero">
+      <div class="work-hero-bg"></div>
+      <div class="work-hero-line"></div>
+      <div class="work-hero-content">
+        <a href="../index.html" class="work-hero-back">← Back to ThioTerra</a>
+        <p class="work-hero-eyebrow">Our Work</p>
+        <h1 class="work-hero-title">Web &<br/>Software</h1>
+        <p class="work-hero-desc">Interfaces that think ahead. Systems your users never have to think about. We build for performance, longevity, and the humans using it.</p>
+      </div>
+      <div class="work-hero-mascot">
+        <img src="../assets/images/mascot.svg" alt="" class="work-hero-mascot-img" style="filter: hue-rotate(0deg) brightness(1.0) saturate(1) drop-shadow(0 0 12px rgba(51,9,239,0.35)) drop-shadow(0 0 24px rgba(51,9,239,0.15));" />
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <div class="work-stats">
+      <div class="work-stats-container">
+        <div class="work-stat">
+          <span class="work-stat-number">12+</span>
+          <span class="work-stat-label">Projects delivered</span>
+        </div>
+        <div class="work-stat">
+          <span class="work-stat-number">100%</span>
+          <span class="work-stat-label">On-time delivery</span>
+        </div>
+        <div class="work-stat">
+          <span class="work-stat-number">3+</span>
+          <span class="work-stat-label">Industries served</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECTS -->
+    <section class="projects-section">
+      <div class="projects-container">
+        <div class="projects-grid">
+
+          <!-- Featured Project -->
+          <article class="project-card featured"
+            data-title="Project Name" data-category="Web &amp; Software" data-year="2024"
+            data-hero="../assets/images/work-web-1.jpg"
+            data-gallery="../assets/images/work-web-1.jpg"
+            data-challenge="The client needed a complete digital overhaul — their existing platform was outdated, slow, and unable to scale with their growing user base."
+            data-solution="We rebuilt the entire system from the ground up using modern technologies, creating a fast, modular architecture with an intuitive interface their team could manage independently."
+            data-results="40% increase in user engagement, 3x faster load times, and a 60% reduction in support tickets within the first month of launch."
+            data-tags="Web Development, UI/UX, Firebase, GSAP"
+            data-overview="A complete digital overhaul — rebuilt from scratch for performance, scalability and the humans using it."
+            data-client="Client Name" data-industry="Technology" data-timeline="8 weeks" data-deliverables="Custom Web App, Design System, Firebase Backend, Admin Dashboard">
+            <div class="project-img">
+              <div class="project-img-inner" style="background-image: url('../assets/images/work-web-1.jpg')">
+                <div class="project-img-placeholder">
+                  <svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                    <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="project-info">
+              <div>
+                <div class="project-meta">
+                  <span class="project-tag">Web App</span>
+                  <span class="project-year">2024</span>
+                </div>
+                <h2 class="project-title">Project Name</h2>
+                <p class="project-subtitle">A brief description of what was built and the problem it solved for the client.</p>
+              </div>
+              <div class="project-arrow">
+                <svg viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="project-card"
+            data-title="Project Name" data-category="Web &amp; Software" data-year="2024"
+            data-hero="../assets/images/work-web-2.jpg"
+            data-gallery="../assets/images/work-web-2.jpg"
+            data-challenge="The client had a static informational website that wasn't converting visitors into leads. No clear CTA structure, slow load times, and zero mobile optimisation."
+            data-solution="We designed and built a conversion-focused website with clear user journeys, fast performance, and a mobile-first approach that reflected the brand accurately."
+            data-results="Lead conversion rate increased by 35% in the first 6 weeks. Bounce rate dropped from 72% to 41%."
+            data-tags="Website Design, HTML/CSS/JS, SEO, Performance"
+            data-overview="A conversion-focused website with clear user journeys, fast performance and mobile-first design."
+            data-client="Client Name" data-industry="Professional Services" data-timeline="4 weeks" data-deliverables="Website Design, Development, SEO Setup, CMS Integration">
+            <div class="project-img">
+              <div class="project-img-inner" style="background-image: url('../assets/images/work-web-2.jpg')">
+                <div class="project-img-placeholder">
+                  <svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                    <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span class="project-tag">Website</span>
+                <span class="project-year">2024</span>
+              </div>
+              <h2 class="project-title">Project Name</h2>
+              <p class="project-subtitle">Brief description of the project.</p>
+              <div class="project-arrow">
+                <svg viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3 — Confidential -->
+          <article class="project-card confidential">
+            <div class="project-img">
+              <div class="project-img-inner" style="background-image: url('../assets/images/work-web-3.jpg')">
+                <div class="project-img-placeholder">
+                  <svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                    <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="confidential-badge">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>
+                </svg>
+                <span class="confidential-badge-text">Under NDA</span>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span class="project-tag">Enterprise Software</span>
+                <span class="project-year">2023</span>
+              </div>
+              <h2 class="project-title">Confidential Project</h2>
+              <p class="project-subtitle">Enterprise-grade software solution. Details available upon request under NDA.</p>
+              <div class="project-arrow">
+                <svg viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CAPABILITIES -->
+    <section class="capabilities-section">
+      <div class="capabilities-container">
+        <p class="section-eyebrow">What we build with</p>
+        <h2 class="why-heading">Our capabilities</h2>
+        <div class="capabilities-grid">
+          <div class="capability-item">
+            <div class="capability-icon">⚡</div>
+            <h3 class="capability-title">Frontend Development</h3>
+            <p class="capability-desc">React, Vue, vanilla JS — whatever your stack needs. Fast, accessible, responsive.</p>
+          </div>
+          <div class="capability-item">
+            <div class="capability-icon">🔧</div>
+            <h3 class="capability-title">Backend & APIs</h3>
+            <p class="capability-desc">Node, PHP, Firebase, REST & GraphQL APIs built for scale.</p>
+          </div>
+          <div class="capability-item">
+            <div class="capability-icon">☁️</div>
+            <h3 class="capability-title">Cloud & Hosting</h3>
+            <p class="capability-desc">Firebase, Hostinger, AWS — deployed, configured, maintained.</p>
+          </div>
+          <div class="capability-item">
+            <div class="capability-icon">📱</div>
+            <h3 class="capability-title">Mobile-First</h3>
+            <p class="capability-desc">Every interface built for thumbs first, keyboards second.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="cta">
+      <div class="cta-container">
+        <h2 class="cta-heading">Have a project in mind?</h2>
+        <p class="cta-subtext">Tell us what you're building.<br/>We'll tell you how far it can go.</p>
+        <a href="../contact.html" class="cta-button">
+          <span>Start the spark</span>
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="../index.html" class="footer-logo">
+            <img src="../assets/logo/logoV.png" alt="ThioTerra" class="footer-logo-img" />
+            <span class="logo-text">THIOTERRA</span>
+          </a>
+          <p class="footer-tagline">Where worlds collide.</p>
+        </div>
+        <nav class="footer-nav">
+          <div class="footer-nav-group">
+            <p class="footer-nav-title">Work</p>
+            <ul role="list">
+              <li><a href="../work/web.html">Web & Software</a></li>
+              <li><a href="../work/marketing.html">Performance Marketing</a></li>
+              <li><a href="../work/brand.html">Brand & Identity</a></li>
+              <li><a href="../work/content.html">Content & Creative</a></li>
+            </ul>
+          </div>
+          <div class="footer-nav-group">
+            <p class="footer-nav-title">Company</p>
+            <ul role="list">
+              <li><a href="../about.html">About</a></li>
+              <li><a href="../contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-nav-group">
+            <p class="footer-nav-title">Connect</p>
+            <ul role="list">
+              <li><a href="https://instagram.com/thioterra" target="_blank" rel="noopener">Instagram</a></li>
+              <li><a href="https://linkedin.com/company/thioterra" target="_blank" rel="noopener">LinkedIn</a></li>
+              <li><a href="https://behance.net/thioterra" target="_blank" rel="noopener">Behance</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© <span id="footer-year"></span> ThioTerra. All rights reserved.</p>
+        <p class="footer-made">Made with intention. Built with precision.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js" defer></script>
+  <script src="../js/main.js" defer></script>
+  <script src="../js/navbar.js" defer></script>
+  <script src="../js/animations.js" defer></script>
+  <script src="../js/footer-reveal.js" defer></script>
+  <script src="../js/project-casestudy.js" defer></script>
+
+        <!-- CASE STUDY OVERLAY -->
+    <div class="casestudy-overlay" id="casestudy-overlay" aria-hidden="true" role="dialog" aria-label="Case study">
+      <div class="cs-panel" tabindex="-1">
+        <button class="cs-close" id="casestudy-close" aria-label="Close case study">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+
+        <!-- BIG HERO -->
+        <div class="cs-hero"></div>
+
+        <!-- TITLE BAND -->
+        <div class="cs-title-band">
+          <div class="cs-title-left">
+            <p class="cs-category"></p>
+            <h2 class="cs-title"></h2>
+            <p class="cs-overview"></p>
+          </div>
+          <div class="cs-title-right">
+            <div class="cs-meta-grid">
+              <div class="cs-meta-item">
+                <span class="cs-meta-label">Client</span>
+                <span class="cs-client cs-meta-value"></span>
+              </div>
+              <div class="cs-meta-item">
+                <span class="cs-meta-label">Industry</span>
+                <span class="cs-industry cs-meta-value"></span>
+              </div>
+              <div class="cs-meta-item">
+                <span class="cs-meta-label">Timeline</span>
+                <span class="cs-timeline cs-meta-value"></span>
+              </div>
+              <div class="cs-meta-item">
+                <span class="cs-meta-label">Year</span>
+                <span class="cs-year cs-meta-value"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAGS -->
+        <div class="cs-tags-band">
+          <div class="cs-tags"></div>
+        </div>
+
+        <!-- GALLERY -->
+        <div class="cs-gallery-section">
+          <div class="cs-gallery-main-wrap">
+            <button class="cs-gallery-prev" aria-label="Previous image">&#8592;</button>
+            <div class="cs-gallery-main"></div>
+            <button class="cs-gallery-next" aria-label="Next image">&#8594;</button>
+          </div>
+          <div class="cs-gallery"></div>
+        </div>
+
+        <!-- TWO COLUMN CONTENT -->
+        <div class="cs-two-col">
+          <div class="cs-col-left">
+            <div class="cs-section">
+              <h4 class="cs-section-label">The Challenge</h4>
+              <p class="cs-challenge cs-section-text"></p>
+            </div>
+            <div class="cs-section">
+              <h4 class="cs-section-label">Our Solution</h4>
+              <p class="cs-solution cs-section-text"></p>
+            </div>
+          </div>
+          <div class="cs-col-right">
+            <div class="cs-section">
+              <h4 class="cs-section-label">Results</h4>
+              <p class="cs-results cs-section-text cs-section-text--highlight"></p>
+            </div>
+            <div class="cs-section">
+              <h4 class="cs-section-label">Key Deliverables</h4>
+              <ul class="cs-deliverables"></ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cs-footer">
+          <a href="../contact.html" class="cta-button cs-cta">
+            <span>Start a similar project</span>
+            <svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+</body>
+</html>
