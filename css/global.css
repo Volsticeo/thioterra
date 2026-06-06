@@ -101,6 +101,7 @@
 }
 
 html {
+  overflow-x: hidden;
   scroll-behavior: auto; /* Lenis handles smooth scroll */
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
@@ -222,6 +223,8 @@ button {
 /* ─── CUSTOM CURSOR ──────────────────────────────────── */
 .cursor-dot,
 .cursor-ring {
+  left: -100px;
+  top: -100px;
   position: fixed;
   pointer-events: none;
   z-index: var(--z-cursor);
@@ -231,12 +234,16 @@ button {
 }
 
 .cursor-dot {
+  left: -100px;
+  top: -100px;
   width: 5px;
   height: 5px;
   background: var(--color-text);
 }
 
 .cursor-ring {
+  left: -100px;
+  top: -100px;
   width: 32px;
   height: 32px;
   border: 1px solid rgba(255, 255, 255, 0.5);
@@ -251,7 +258,9 @@ button {
 }
 
 @media (hover: none) {
-  .cursor-dot, .cursor-ring { display: none; }
+  .cursor-dot, .cursor-ring {
+  left: -100px;
+  top: -100px; display: none; }
 }
 
 /* ─── SCROLL PROGRESS BAR ────────────────────────────── */
