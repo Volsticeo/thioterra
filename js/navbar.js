@@ -83,4 +83,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // ─── SCROLL — glass treatment ─────────────────────
+  const navbar = document.querySelector('.navbar');
+  if (navbar) {
+    const onScroll = () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // run on load in case page is already scrolled
+  }
+
 });
