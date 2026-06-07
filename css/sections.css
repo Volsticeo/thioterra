@@ -199,7 +199,7 @@
   position: relative;
   z-index: var(--z-content);
   padding: var(--section-padding) 0;
-  background-color: var(--color-surface);
+  background: transparent;
   overflow: hidden;
 }
 
@@ -443,7 +443,7 @@
   position: relative;
   padding: var(--section-padding) 0;
   text-align: center;
-  background-image: url('../assets/images/bg2.webp');
+  /* background removed — ful.webp site bg shows through */
   background-size: cover;
   background-position: center center;
   background-attachment: fixed;
@@ -735,8 +735,8 @@
   box-shadow: 0 -30px 80px rgba(0,0,0,0.9), 0 -1px 0 var(--color-accent-glow);
 }
 
-main { position: relative; z-index: 2; background: var(--color-bg); }
-.main-wrapper { position: relative; z-index: 2; background: var(--color-bg); }
+main { position: relative; z-index: 2; background: transparent; }
+.main-wrapper { position: relative; z-index: 2; background: transparent; }
 .footer-spacer { display: none; }
 
 .footer-container {
@@ -900,7 +900,7 @@ main { position: relative; z-index: 2; background: var(--color-bg); }
   height: 40px;
   border-radius: 50%;
   border: 1px solid var(--color-border);
-  background: var(--color-bg);
+  background: transparent;
   color: var(--color-text-muted);
   display: flex;
   align-items: center;
@@ -1045,7 +1045,7 @@ body.casestudy-open {
 .cs-panel {
   position: absolute;
   inset: 0;
-  background: var(--color-bg);
+  background: transparent;
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: var(--color-border) transparent;
@@ -1284,7 +1284,7 @@ body.casestudy-open {
 .cs-panel {
   position: absolute;
   inset: 0;
-  background: var(--color-bg);
+  background: transparent;
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
@@ -1543,7 +1543,7 @@ body.casestudy-open {
 .cs-panel {
   position: absolute;
   inset: 0;
-  background: var(--color-bg);
+  background: transparent;
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
@@ -1780,7 +1780,7 @@ body.casestudy-open {
   position: relative;
   z-index: var(--z-content);
   padding: var(--section-padding) 0;
-  background-color: var(--color-bg);
+  background: transparent;
 }
 
 .why-container {

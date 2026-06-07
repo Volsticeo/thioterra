@@ -27,56 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
     lenis.on('scroll', ScrollTrigger.update);
   }
 
-  // ─── STAR FIELD CANVAS ────────────────────────────
-  const canvas  = document.getElementById('starfield');
-  const ctx     = canvas.getContext('2d');
-  let stars     = [];
-  let W, H;
-
-  function resizeCanvas() {
-    W = canvas.width  = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-  }
-
-  function createStars(count = 180) {
-    stars = [];
-    for (let i = 0; i < count; i++) {
-      stars.push({
-        x:       Math.random() * W,
-        y:       Math.random() * H,
-        r:       Math.random() * 1.2 + 0.2,
-        alpha:   Math.random(),
-        speed:   Math.random() * 0.003 + 0.001,
-        drift:   (Math.random() - 0.5) * 0.08,
-      });
-    }
-  }
-
-  function drawStars() {
-    ctx.clearRect(0, 0, W, H);
-    stars.forEach(s => {
-      s.alpha += s.speed;
-      if (s.alpha > 1 || s.alpha < 0) s.speed *= -1;
-      s.x += s.drift;
-      if (s.x > W) s.x = 0;
-      if (s.x < 0) s.x = W;
-
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255, 255, 255, ${s.alpha * 0.7})`;
-      ctx.fill();
-    });
-    requestAnimationFrame(drawStars);
-  }
-
-  resizeCanvas();
-  createStars();
-  drawStars();
-
-  window.addEventListener('resize', () => {
-    resizeCanvas();
-    createStars();
-  });
 
   // ─── CUSTOM CURSOR ────────────────────────────────
   const dot  = document.querySelector('.cursor-dot');
