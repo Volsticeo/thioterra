@@ -195,7 +195,9 @@
   right: 0;
   width: 100%;
   height: 66vh;
-  max-height: 560px;
+  max-height: 580px;
+  display: flex;
+  align-items: center;
   z-index: calc(var(--z-nav) - 1);
   pointer-events: none;
   isolation: isolate;
@@ -260,75 +262,229 @@
 .mega-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  height: 100%;
+  gap: 16px;
   max-width: 1080px;
   width: 100%;
   margin: 0 auto;
   position: relative;
   z-index: 1;
+  align-items: start;
 }
 
+/* ─── 3D MEGA CARDS — ThioTerra adapted Uiverse ─────── */
+/* Perspective wrapper — each grid cell IS the .mega-card */
 .mega-card {
+  perspective: 900px;
+  text-decoration: none;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+}
+
+/* The card that tilts */
+.mc-inner {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 28px;
+  background:
+    url('../assets/images/card.webp') center / cover no-repeat,
+    linear-gradient(145deg, #1a1640 0%, #0D0A24 55%, #08061A 100%);
+  transition: all 0.5s ease-in-out;
+  transform-style: preserve-3d;
+  position: relative;
   display: flex;
   flex-direction: column;
-  border-radius: 14px;
-  overflow: hidden;
-  text-decoration: none;
-  background: rgba(255,255,255,0.03);
-  height: 100%;
-  transition: background 0.2s ease;
-  cursor: pointer;
+  justify-content: space-between;
+  box-shadow:
+    rgba(51,9,239,0) 40px 50px 25px -40px,
+    rgba(51,9,239,0.18) 0px 25px 25px -5px;
 }
-.mega-card:hover { background: rgba(255,255,255,0.06); }
 
-.mega-card-img {
-  flex: 1;
-  min-height: 0;
-  overflow: hidden;
-  border-radius: 10px 10px 0 0;
-  position: relative;
+/* 3D tilt on hover */
+.mega-card:hover .mc-inner {
+  transform: rotate3d(1, 1, 0, 20deg);
+  box-shadow:
+    rgba(51,9,239,0.22) 30px 50px 25px -40px,
+    rgba(51,9,239,0.10) 0px 25px 30px 0px;
 }
-.mega-card-img img {
+
+/* ── Liquid glass panel (top-right wedge) ──────────── */
+.mc-glass {
+  transform-style: preserve-3d;
+  position: absolute;
+  inset: 7px;
+  border-radius: 24px;
+  border-top-right-radius: 100%;
+  transform: translate3d(0px, 0px, 26px);
+
+  /* Liquid glass — translucent, like the navbar pill */
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.08) 0%,
+    rgba(120,85,255,0.04) 45%,
+    rgba(8,6,26,0.02) 100%
+  );
+  backdrop-filter: blur(20px) saturate(2.2) brightness(1.14);
+  -webkit-backdrop-filter: blur(20px) saturate(2.2) brightness(1.14);
+
+  /* Shining rim — strong top-left specular, matching navbar */
+  box-shadow:
+    inset  0   1px 0 rgba(255,255,255,0.60),
+    inset  1px 0   0 rgba(255,255,255,0.28),
+    inset  0  -1px 0 rgba(0,0,0,0.12),
+    inset -1px 0   0 rgba(255,255,255,0.10),
+    0 0 0 0.5px rgba(255,255,255,0.14);
+
+  transition: all 0.5s ease-in-out;
+  pointer-events: none;
+}
+
+/* Grain on glass */
+.mc-glass::after {
+  content: '';
   position: absolute;
   inset: 0;
+  border-radius: inherit;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  background-size: 180px;
+  pointer-events: none;
+  opacity: 1;
+}
+
+/* ── Concentric circles — ThioTerra logo ───────────── */
+.mc-logo {
+  position: absolute;
+  right: 0; top: 0;
+  transform-style: preserve-3d;
+  pointer-events: none;
+}
+
+.mc-circle {
+  display: block;
+  position: absolute;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  top: 0; right: 0;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: all 0.5s ease-in-out;
+}
+
+/* Per-card accent colors via data-accent */
+.mega-card[data-accent="cyan"]    .mc-circle { background: rgba(79,209,255,0.12);  box-shadow: rgba(79,209,255,0.15)  -8px 8px 18px 0px; }
+.mega-card[data-accent="gold"]    .mc-circle { background: rgba(249,217,154,0.12); box-shadow: rgba(249,217,154,0.15) -8px 8px 18px 0px; }
+.mega-card[data-accent="violet"]  .mc-circle { background: rgba(120,85,255,0.14);  box-shadow: rgba(120,85,255,0.18)  -8px 8px 18px 0px; }
+.mega-card[data-accent="blue"]    .mc-circle { background: rgba(51,9,239,0.16);    box-shadow: rgba(51,9,239,0.20)    -8px 8px 18px 0px; }
+
+.mc-circle1 { width: 96px;  transform: translate3d(0,0,20px); top:  6px; right:  6px; }
+.mc-circle2 { width: 74px;  transform: translate3d(0,0,40px); top:  9px; right:  9px; backdrop-filter: blur(2px); transition-delay: 0.4s; }
+.mc-circle3 { width: 54px;  transform: translate3d(0,0,60px); top: 15px; right: 15px; transition-delay: 0.8s; }
+.mc-circle4 { width: 36px; transform: translate3d(0,0,80px); top: 21px; right: 21px; transition-delay: 1.2s; }
+.mc-circle5 {
+  width: 24px;
+  transform: translate3d(0,0,100px);
+  top: 27px; right: 27px;
+  display: grid; place-content: center;
+  transition-delay: 1.6s;
+  background: rgba(8, 6, 26, 0.92) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: none !important;
+  overflow: hidden;
+  border-radius: 50%;
+}
+.mc-circle5 img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.72;
-  transition: opacity 0.25s ease, transform 0.4s ease;
   display: block;
-}
-.mega-card:hover .mega-card-img img {
+  filter: none;
   opacity: 1;
-  transform: scale(1.04);
+  border-radius: 50%;
 }
 
-.mega-card-body {
-  padding: 14px 16px 16px;
-  flex-shrink: 0;
-  background: #0B0920;
+/* Circles pop out on hover */
+.mega-card:hover .mc-circle2 { transform: translate3d(0,0,60px); }
+.mega-card:hover .mc-circle3 { transform: translate3d(0,0,80px); }
+.mega-card:hover .mc-circle4 { transform: translate3d(0,0,100px); }
+.mega-card:hover .mc-circle5 { transform: translate3d(0,0,120px); }
+
+/* ── Content area ──────────────────────────────────── */
+.mc-content {
+  padding: 74px 28px 0 20px;
+  transform: translate3d(0,0,27px);
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
 }
-.mega-card-title {
+
+.mc-eyebrow {
   display: block;
   font-family: 'Urbanist', sans-serif;
-  font-size: 0.9rem;
+  font-size: 0.65rem;
   font-weight: 600;
-  color: rgba(255,255,255,0.88);
-  letter-spacing: 0.01em;
-  margin-bottom: 4px;
-  transition: color 0.18s ease;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent, #F9D99A);
+  margin-bottom: 8px;
+  opacity: 0.7;
 }
-.mega-card-desc {
+
+.mc-title {
   display: block;
-  font-family: 'Urbanist', sans-serif;
-  font-size: 0.76rem;
-  color: rgba(255,255,255,0.4);
-  line-height: 1.55;
-  transition: color 0.18s ease;
+  font-family: 'Polaris', 'Project Space', sans-serif;
+  font-size: clamp(0.92rem, 1.4vw, 1.05rem);
+  font-weight: 400;
+  color: #FFFFFF;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.6);
 }
-.mega-card:hover .mega-card-title { color: #FFFFFF; }
-.mega-card:hover .mega-card-desc  { color: rgba(255,255,255,0.6); }
+
+.mc-desc {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-family: 'Urbanist', sans-serif;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.50);
+  line-height: 1.6;
+  margin-top: 8px;
+}
+
+/* ── Bottom — Know More CTA ────────────────────────── */
+.mc-bottom {
+  transform-style: preserve-3d;
+  padding: 8px 20px 20px;
+  transform: translate3d(0,0,27px);
+  flex-shrink: 0;
+}
+
+.mc-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  background: rgba(249,217,154,0.10);
+  border: 1px solid rgba(249,217,154,0.30);
+  border-radius: 100px;
+  font-family: 'Urbanist', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #F9D99A;
+  letter-spacing: 0.05em;
+  transition: all 0.25s ease;
+  text-shadow: none;
+}
+
+.mega-card:hover .mc-cta {
+  background: rgba(249,217,154,0.18);
+  border-color: rgba(249,217,154,0.55);
+  transform: translate3d(0,0,50px);
+  box-shadow: 0 4px 20px rgba(249,217,154,0.20);
+}
 
 /* ─── SCRIM ──────────────────────────────────────────── */
 .nav-scrim {
