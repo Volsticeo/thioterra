@@ -1,13 +1,12 @@
 /* ═══════════════════════════════════════════════════════
    THIOTERRA — NAVBAR.JS
-   Scroll → glass pill | Dropdown → scrim + mega menu
-   Hamburger toggle | Mobile menu
 ═══════════════════════════════════════════════════════ */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  const navbar   = document.querySelector('.navbar');
-  const scrim    = document.querySelector('.nav-scrim');
+  const navbar    = document.querySelector('.navbar');
+  const scrim     = document.querySelector('.nav-scrim');
+  const mega      = document.querySelector('.mega-menu');   // direct child of header
   const hamburger  = document.querySelector('.hamburger');
   const mobileMenu = document.querySelector('.mobile-menu');
   const body = document.body;
@@ -15,57 +14,45 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!navbar) return;
 
   // ─── SCROLL → glass pill ──────────────────────────
-  const onScroll = () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 40);
-  };
+  const onScroll = () => navbar.classList.toggle('scrolled', window.scrollY > 40);
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
   // ─── DROPDOWN + SCRIM ─────────────────────────────
   const dropItems = document.querySelectorAll('.nav-item.has-dropdown');
 
+  const openMega = () => {
+    navbar.classList.add('dropdown-active');
+    scrim?.classList.add('active');
+  };
+
+  const closeMega = () => {
+    navbar.classList.remove('dropdown-active');
+    scrim?.classList.remove('active');
+  };
+
   dropItems.forEach(item => {
-    const mega = item.querySelector('.mega-menu');
-
-    const openDrop = () => {
-      dropItems.forEach(other => { if (other !== item) other.classList.remove('dropdown-open'); });
-      item.classList.add('dropdown-open');
-      scrim?.classList.add('active');
-    };
-
-    const closeDrop = (e) => {
-      // Stay open if mouse is moving TO the mega menu
-      if (mega && e.relatedTarget && mega.contains(e.relatedTarget)) return;
-      item.classList.remove('dropdown-open');
-      if (!document.querySelector('.nav-item.dropdown-open')) {
-        scrim?.classList.remove('active');
-      }
-    };
-
-    item.addEventListener('mouseenter', openDrop);
-    item.addEventListener('mouseleave', closeDrop);
-
-    // Keep open while hovering mega menu itself
-    if (mega) {
-      mega.addEventListener('mouseenter', openDrop);
-      mega.addEventListener('mouseleave', (e) => {
-        // Close only if not moving back to the nav item
-        if (item.contains(e.relatedTarget)) return;
-        item.classList.remove('dropdown-open');
-        if (!document.querySelector('.nav-item.dropdown-open')) {
-          scrim?.classList.remove('active');
-        }
-      });
-    }
+    item.addEventListener('mouseenter', openMega);
+    item.addEventListener('mouseleave', (e) => {
+      // Don't close if moving into the mega menu
+      if (mega && mega.contains(e.relatedTarget)) return;
+      closeMega();
+    });
   });
 
-  // Click scrim → close everything
-  scrim?.addEventListener('click', () => {
-    dropItems.forEach(item => item.classList.remove('dropdown-open'));
-    scrim.classList.remove('active');
+  // Keep open while hovering mega menu itself
+  mega?.addEventListener('mouseenter', openMega);
+  mega?.addEventListener('mouseleave', (e) => {
+    // Don't close if moving back to a nav item
+    const goingToNav = [...dropItems].some(item => item.contains(e.relatedTarget));
+    if (goingToNav) return;
+    closeMega();
   });
 
-  // ─── HAMBURGER TOGGLE ─────────────────────────────
+  // Click scrim → close
+  scrim?.addEventListener('click', closeMega);
+
+  // ─── HAMBURGER ────────────────────────────────────
   hamburger?.addEventListener('click', () => {
     const isOpen = mobileMenu?.classList.toggle('open');
     hamburger.classList.toggle('active', isOpen);
@@ -74,7 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
     body.style.overflow = isOpen ? 'hidden' : '';
   });
 
-  // Close mobile on link click
   mobileMenu?.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       mobileMenu.classList.remove('open');
@@ -85,13 +71,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Close on ESC
+  // ─── ESC KEY ──────────────────────────────────────
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
-      // Close dropdowns
-      dropItems.forEach(item => item.classList.remove('dropdown-open'));
-      scrim?.classList.remove('active');
-      // Close mobile
+      closeMega();
       if (mobileMenu?.classList.contains('open')) {
         mobileMenu.classList.remove('open');
         hamburger?.classList.remove('active');
@@ -112,19 +95,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     strip.addEventListener('click', () => {
       const links = {
-        web: 'work/web.html', marketing: 'work/marketing.html',
-        brand: 'work/brand.html', content: 'work/content.html',
+        web:'work/web.html', marketing:'work/marketing.html',
+        brand:'work/brand.html', content:'work/content.html'
       };
       if (links[strip.dataset.service]) window.location.href = links[strip.dataset.service];
     });
   });
-
   const accordion = document.querySelector('.services-accordion');
-  if (accordion) {
-    accordion.addEventListener('mouseleave', () => {
-      strips.forEach(s => s.classList.remove('active'));
-      if (strips[0]) strips[0].classList.add('active');
-    });
-  }
+  accordion?.addEventListener('mouseleave', () => {
+    strips.forEach(s => s.classList.remove('active'));
+    strips[0]?.classList.add('active');
+  });
 
 });

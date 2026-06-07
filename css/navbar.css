@@ -1,35 +1,47 @@
 /* ═══════════════════════════════════════════════════════
    THIOTERRA — NAVBAR CSS
-   Obsidian-style: always pill, centered, never resizes.
-   Scroll only changes background — not size or position.
-   Mega menu: fixed, centered, image cards + scrim.
+   .navbar = full-width fixed wrapper (NO transform, NO backdrop-filter)
+   .nav-container = the glass pill, centered with margin: auto
+   .mega-menu = sibling of nav-container, truly viewport-fixed
 ═══════════════════════════════════════════════════════ */
 
-/* ─── PILL WRAPPER ───────────────────────────────────── */
+/* ─── NAVBAR WRAPPER — full width, no transform ──────── */
 .navbar {
   position: fixed;
-  top: 12px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(100vw - 40px);
-  max-width: 1440px;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: var(--z-nav);
-  height: 56px;
-  border-radius: 100px;
-  border: 1px solid transparent;
-  isolation: isolate;
-
-  /* Default — fully transparent */
-  background: transparent;
-  transition:
-    background     0.3s ease,
-    border-color   0.3s ease,
-    box-shadow     0.3s ease,
-    backdrop-filter 0.3s ease;
+  /* CRITICAL: no transform, no backdrop-filter here —
+     both would trap position:fixed children to this element */
+  pointer-events: none; /* let clicks through the empty space */
 }
 
-/* Scrolled — glass appears, NOTHING ELSE CHANGES */
-.navbar.scrolled {
+/* ─── PILL CONTAINER — centered via margin: auto ─────── */
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  width: calc(100% - 40px);
+  max-width: 1440px;
+  margin: 12px auto 0;
+  padding: 0 8px 0 20px;
+  border-radius: 100px;
+  border: 1px solid transparent;
+  position: relative;
+  z-index: 2;
+  pointer-events: all;
+
+  background: transparent;
+  transition:
+    background      0.3s ease,
+    border-color    0.3s ease,
+    box-shadow      0.3s ease;
+}
+
+/* Scrolled — glass appears on nav-container */
+.navbar.scrolled .nav-container {
   background: linear-gradient(
     135deg,
     rgba(255,255,255,0.13) 0%,
@@ -48,8 +60,7 @@
     0 2px 12px rgba(0,0,0,0.22);
 }
 
-/* Sheen + grain only when scrolled */
-.navbar.scrolled::before {
+.navbar.scrolled .nav-container::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -62,7 +73,7 @@
   pointer-events: none;
   z-index: 0;
 }
-.navbar.scrolled::after {
+.navbar.scrolled .nav-container::after {
   content: '';
   position: absolute;
   inset: 0;
@@ -73,17 +84,6 @@
   z-index: 0;
 }
 
-/* ─── CONTAINER ──────────────────────────────────────── */
-.nav-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 100%;
-  padding: 0 8px 0 20px;
-  position: relative;
-  z-index: 2;
-}
-
 /* ─── LOGO ───────────────────────────────────────────── */
 .nav-logo {
   display: flex;
@@ -91,8 +91,9 @@
   gap: 8px;
   text-decoration: none;
   flex-shrink: 0;
+  position: relative;
+  z-index: 1;
 }
-
 .logo-img {
   height: 30px;
   width: auto;
@@ -100,7 +101,6 @@
   object-fit: contain;
   filter: drop-shadow(0 1px 8px rgba(0,0,0,0.7));
 }
-
 .logo-text {
   font-family: var(--font-display);
   font-size: 0.95rem;
@@ -111,7 +111,7 @@
   white-space: nowrap;
 }
 
-/* ─── NAV LINKS — centered absolutely ───────────────── */
+/* ─── NAV LINKS — centered ───────────────────────────── */
 .nav-links {
   display: flex;
   align-items: center;
@@ -121,7 +121,6 @@
   transform: translateX(-50%);
   z-index: 1;
 }
-
 .nav-item { position: relative; }
 
 .nav-link {
@@ -140,12 +139,11 @@
   text-shadow: 0 1px 8px rgba(0,0,0,0.8);
   cursor: pointer;
 }
-
-.nav-link:hover, .nav-item.dropdown-open .nav-link {
+.nav-link:hover,
+.nav-item.dropdown-open .nav-link {
   color: #FFFFFF;
   background: rgba(255,255,255,0.08);
 }
-
 .nav-link::after { display: none; }
 
 .dropdown-arrow {
@@ -186,32 +184,33 @@
 .nav-cta svg { width: 14px; height: 14px; transition: transform 0.2s ease; }
 .nav-cta:hover svg { transform: translateX(2px); }
 
-/* ─── MEGA MENU — fixed, centered, image cards ───────── */
-/* ─── MEGA MENU — full-width, 2/3 viewport height ───── */
+/* ─── MEGA MENU — truly viewport-fixed ───────────────── */
+/* Lives as sibling of .nav-container inside .navbar     */
+/* .navbar has no transform/backdrop-filter so           */
+/* position:fixed here is relative to the VIEWPORT       */
 .mega-menu {
   position: fixed;
-  top: 68px;            /* flush to navbar bottom (12px + 56px) */
+  top: 68px;   /* 12px margin + 56px pill height */
   left: 0;
   right: 0;
   width: 100%;
   height: 66vh;
   max-height: 560px;
   z-index: calc(var(--z-nav) - 1);
+  pointer-events: none;
 
   background: #0B0920;
-  border-bottom: 1px solid rgba(255,255,255,0.07);
-  border-top: 1.5px solid rgba(249,217,154,0.25);
+  border-top: 1.5px solid rgba(249,217,154,0.22);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
   padding: 16px 32px 20px;
 
   opacity: 0;
-  pointer-events: none;
   transform: translateY(-6px);
   transition: opacity 0.25s ease, transform 0.25s ease;
-
   box-shadow: 0 24px 64px rgba(0,0,0,0.75);
 }
 
-.nav-item.dropdown-open .mega-menu {
+.navbar.dropdown-active .mega-menu {
   opacity: 1;
   pointer-events: all;
   transform: translateY(0);
@@ -236,9 +235,8 @@
   transition: background 0.2s ease;
   cursor: pointer;
 }
-.mega-card:hover { background: rgba(255,255,255,0.055); }
+.mega-card:hover { background: rgba(255,255,255,0.06); }
 
-/* Image fills remaining card space */
 .mega-card-img {
   flex: 1;
   min-height: 0;
@@ -261,7 +259,6 @@
   transform: scale(1.04);
 }
 
-/* Text locked to bottom of card */
 .mega-card-body {
   padding: 14px 16px 16px;
   flex-shrink: 0;
@@ -288,7 +285,7 @@
 .mega-card:hover .mega-card-title { color: #FFFFFF; }
 .mega-card:hover .mega-card-desc  { color: rgba(255,255,255,0.6); }
 
-/* ─── SCRIM — full page overlay behind mega menu ─────── */
+/* ─── SCRIM ──────────────────────────────────────────── */
 .nav-scrim {
   position: fixed;
   inset: 0;
@@ -298,9 +295,7 @@
   pointer-events: none;
   transition: opacity 0.3s ease;
 }
-.nav-scrim.active {
-  opacity: 1;
-}
+.nav-scrim.active { opacity: 1; }
 
 /* ─── HAMBURGER ──────────────────────────────────────── */
 .hamburger {
@@ -344,7 +339,11 @@
   transition: transform 0.5s cubic-bezier(0.76,0,0.24,1), visibility 0s 0.5s;
   overflow-y: auto;
 }
-.mobile-menu.open { transform: translateX(0); visibility: visible; transition: transform 0.5s cubic-bezier(0.76,0,0.24,1), visibility 0s; }
+.mobile-menu.open {
+  transform: translateX(0);
+  visibility: visible;
+  transition: transform 0.5s cubic-bezier(0.76,0,0.24,1), visibility 0s;
+}
 .mobile-menu > * { position: relative; z-index: 1; }
 .mobile-nav-links { display: flex; flex-direction: column; gap: 0; }
 .mobile-nav-link {
@@ -359,10 +358,7 @@
   letter-spacing: -0.02em;
 }
 .mobile-nav-link:hover { color: var(--color-accent); padding-left: 1rem; }
-.mobile-submenu-group {
-  padding: 1rem 0;
-  border-bottom: 0.5px solid rgba(255,255,255,0.08);
-}
+.mobile-submenu-group { padding: 1rem 0; border-bottom: 0.5px solid rgba(255,255,255,0.08); }
 .mobile-submenu-label {
   display: block;
   font-size: var(--fs-eyebrow);
@@ -397,12 +393,11 @@
 
 /* ─── RESPONSIVE ─────────────────────────────────────── */
 @media (max-width: 768px) {
-  .navbar { width: calc(100vw - 24px); top: 8px; }
+  .nav-container { width: calc(100% - 24px); margin-top: 8px; }
   .nav-links { display: none; }
   .nav-cta   { display: none; }
   .hamburger { display: flex; }
 }
-
 @media (prefers-reduced-motion: reduce) {
-  .navbar, .mega-menu, .mobile-menu, .nav-scrim { transition: none; }
+  .nav-container, .mega-menu, .mobile-menu, .nav-scrim { transition: none; }
 }
