@@ -4,12 +4,12 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  const navbar    = document.querySelector('.navbar');
-  const scrim     = document.querySelector('.nav-scrim');
-  const mega      = document.querySelector('.mega-menu');   // direct child of header
+  const navbar     = document.querySelector('.navbar');
+  const scrim      = document.querySelector('.nav-scrim');
+  const mega       = document.querySelector('.mega-menu');
   const hamburger  = document.querySelector('.hamburger');
   const mobileMenu = document.querySelector('.mobile-menu');
-  const body = document.body;
+  const body       = document.body;
 
   if (!navbar) return;
 
@@ -19,38 +19,38 @@ document.addEventListener('DOMContentLoaded', () => {
   onScroll();
 
   // ─── DROPDOWN + SCRIM ─────────────────────────────
-  const dropItems = document.querySelectorAll('.nav-item.has-dropdown');
+  let closeTimer = null;
 
   const openMega = () => {
+    clearTimeout(closeTimer);
     navbar.classList.add('dropdown-active');
     scrim?.classList.add('active');
   };
 
-  const closeMega = () => {
-    navbar.classList.remove('dropdown-active');
-    scrim?.classList.remove('active');
+  const scheduledClose = () => {
+    // Small delay so mouse can travel from pill → dropdown gap without closing
+    closeTimer = setTimeout(() => {
+      navbar.classList.remove('dropdown-active');
+      scrim?.classList.remove('active');
+    }, 120);
   };
 
-  dropItems.forEach(item => {
+  // Hover on the Work nav-item
+  document.querySelectorAll('.nav-item.has-dropdown').forEach(item => {
     item.addEventListener('mouseenter', openMega);
-    item.addEventListener('mouseleave', (e) => {
-      // Don't close if moving into the mega menu
-      if (mega && mega.contains(e.relatedTarget)) return;
-      closeMega();
-    });
+    item.addEventListener('mouseleave', scheduledClose);
   });
 
-  // Keep open while hovering mega menu itself
+  // Hover on the mega menu itself — cancel any pending close
   mega?.addEventListener('mouseenter', openMega);
-  mega?.addEventListener('mouseleave', (e) => {
-    // Don't close if moving back to a nav item
-    const goingToNav = [...dropItems].some(item => item.contains(e.relatedTarget));
-    if (goingToNav) return;
-    closeMega();
-  });
+  mega?.addEventListener('mouseleave', scheduledClose);
 
-  // Click scrim → close
-  scrim?.addEventListener('click', closeMega);
+  // Click scrim → close immediately
+  scrim?.addEventListener('click', () => {
+    clearTimeout(closeTimer);
+    navbar.classList.remove('dropdown-active');
+    scrim.classList.remove('active');
+  });
 
   // ─── HAMBURGER ────────────────────────────────────
   hamburger?.addEventListener('click', () => {
@@ -71,10 +71,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ─── ESC KEY ──────────────────────────────────────
+  // ─── ESC ──────────────────────────────────────────
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
-      closeMega();
+      clearTimeout(closeTimer);
+      navbar.classList.remove('dropdown-active');
+      scrim?.classList.remove('active');
       if (mobileMenu?.classList.contains('open')) {
         mobileMenu.classList.remove('open');
         hamburger?.classList.remove('active');
@@ -106,15 +108,5 @@ document.addEventListener('DOMContentLoaded', () => {
     strips.forEach(s => s.classList.remove('active'));
     strips[0]?.classList.add('active');
   });
-
-  // ─── SCROLL — glass treatment ─────────────────────
-  const navbar = document.querySelector('.navbar');
-  if (navbar) {
-    const onScroll = () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 40);
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll(); // run on load in case page is already scrolled
-  }
 
 });

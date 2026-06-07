@@ -190,7 +190,7 @@
 /* position:fixed here is relative to the VIEWPORT       */
 .mega-menu {
   position: fixed;
-  top: 68px;   /* 12px margin + 56px pill height */
+  top: 76px;   /* 12px + 56px + 8px breathing room */
   left: 0;
   right: 0;
   width: 100%;
@@ -198,16 +198,56 @@
   max-height: 560px;
   z-index: calc(var(--z-nav) - 1);
   pointer-events: none;
+  isolation: isolate;
 
-  background: #0B0920;
-  border-top: 1.5px solid rgba(249,217,154,0.22);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-  padding: 16px 32px 20px;
+  /* Liquid glass */
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.09) 0%,
+    rgba(8,6,26,0.88) 18%,
+    rgba(8,6,26,0.94) 100%
+  );
+  backdrop-filter: blur(40px) saturate(2.0) brightness(1.04);
+  -webkit-backdrop-filter: blur(40px) saturate(2.0) brightness(1.04);
+
+  /* Shining edge rim */
+  border: 1px solid rgba(255,255,255,0.08);
+  border-top: 1.5px solid rgba(249,217,154,0.40);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+
+  box-shadow:
+    inset 0  1px 0 rgba(255,255,255,0.22),
+    inset 0 -1px 0 rgba(0,0,0,0.20),
+    0 0 0 0.5px rgba(255,255,255,0.08),
+    0 32px 80px rgba(0,0,0,0.72);
+
+  padding: 20px 32px 24px;
 
   opacity: 0;
-  transform: translateY(-6px);
-  transition: opacity 0.25s ease, transform 0.25s ease;
-  box-shadow: 0 24px 64px rgba(0,0,0,0.75);
+  transform: translateY(-8px);
+  transition: opacity 0.28s ease, transform 0.28s ease;
+}
+
+/* Top sheen sweep */
+.mega-menu::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 35%;
+  background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Grain */
+.mega-menu::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 220px;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .navbar.dropdown-active .mega-menu {
@@ -216,12 +256,17 @@
   transform: translateY(0);
 }
 
-/* 4-column grid filling full height */
+/* Constrain grid width so cards are smaller — centered */
 .mega-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
   height: 100%;
+  max-width: 1080px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 .mega-card {
