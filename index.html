@@ -89,6 +89,7 @@
        STYLESHEETS
   ═══════════════════════════════════════════ -->
 <link href="css/global.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.29.0/dist/tabler-icons.min.css" rel="stylesheet"/>
 <link href="css/navbar.css" rel="stylesheet"/>
 <link href="css/hero.css" rel="stylesheet"/>
 <link href="css/sections.css" rel="stylesheet"/>
@@ -279,82 +280,88 @@
 <!-- ───────────────────────────────────────
          SECTION 02 — SEMICIRCLE / WHAT WE DO
     ─────────────────────────────────────────── -->
-<section aria-label="What we do" class="services-section" id="services">
+<section aria-label="What we create" class="services-section" id="services">
 <div class="services-container">
-<!-- Left content -->
-<div class="services-left">
+<div class="services-header">
 <p class="section-eyebrow">What we create</p>
-<h2 class="services-heading">Four disciplines.</h2>
-<h2 class="services-heading">One philosophy.</h2>
+<h2 class="services-heading">Four disciplines.<br/>One philosophy.</h2>
 <p class="services-subtext">Built around you, not the brief.</p>
-<!-- Dynamic content — changes on slice hover -->
-<div aria-live="polite" class="services-dynamic" id="services-dynamic">
-<div class="dynamic-item active" data-service="web">
-<p class="dynamic-text">Interfaces that think ahead. Systems your users never have to think about.</p>
-<a class="dynamic-link" href="work/web.html">View Web Work →</a>
 </div>
-<div class="dynamic-item" data-service="marketing">
-<p class="dynamic-text">Campaigns engineered to convert. Every rupee spent with intention.</p>
-<a class="dynamic-link" href="work/marketing.html">View Marketing Work →</a>
+<div class="wt-grid">
+<div class="wt-wrap">
+<div class="wt-center">
+<span class="wt-num">01</span>
+<span class="wt-name">Web &amp; Software</span>
 </div>
-<div class="dynamic-item" data-service="brand">
-<p class="dynamic-text">Your story distilled into something people feel before they read.</p>
-<a class="dynamic-link" href="work/brand.html">View Brand Work →</a>
+<div class="wt-reveal">
+<div class="wt-upper">
+<div class="wt-icon-item"><i aria-hidden="true" class="ti ti-layout-dashboard"></i><span>UI Design</span></div>
+<div class="wt-icon-item"><i aria-hidden="true" class="ti ti-code"></i><span>Development</span></div>
+<div class="wt-icon-item"><i aria-hidden="true" class="ti ti-device-mobile"></i><span>Mobile</span></div>
+<div class="wt-icon-item"><i aria-hidden="true" class="ti ti-bolt"></i><span>Performance</span></div>
 </div>
-<div class="dynamic-item" data-service="content">
-<p class="dynamic-text">Content that stops the scroll and starts a conversation.</p>
-<a class="dynamic-link" href="work/content.html">View Content Work →</a>
+<div class="wt-spacer"></div><div class="wt-lower">
+<p>Interfaces that think ahead. Systems your users never have to think about.</p>
 </div>
-</div>
-</div>
-<!-- Accordion Strips -->
-<div aria-label="Service categories" class="services-accordion" id="services-accordion">
-<div aria-expanded="true" class="accordion-strip active" data-service="web" role="button" tabindex="0">
-<div class="accordion-header">
-<span class="accordion-number">01</span>
-<span class="accordion-title">Web &amp; Software</span>
-<span aria-hidden="true" class="accordion-arrow">+</span>
-</div>
-<div class="accordion-body">
-<p class="accordion-desc">Interfaces that think ahead. Systems your users never have to think about.</p>
-<a class="accordion-link" href="work/web.html">View Work →</a>
+<a class="wt-cta" href="work/web.html">View Work</a>
 </div>
 </div>
-<div aria-expanded="false" class="accordion-strip" data-service="marketing" role="button" tabindex="0">
-<div class="accordion-header">
-<span class="accordion-number">02</span>
-<span class="accordion-title">Performance Marketing</span>
-<span aria-hidden="true" class="accordion-arrow">+</span>
+<div class="wt-wrap">
+<div class="wt-center">
+<span class="wt-num">02</span>
+<span class="wt-name">Performance Marketing</span>
 </div>
-<div class="accordion-body">
-<p class="accordion-desc">Campaigns engineered to convert. Every rupee spent with intention.</p>
-<a class="accordion-link" href="work/marketing.html">View Work →</a>
+<div class="wt-reveal">
+<div class="wt-upper">
+<div class="wt-icon-item"><i aria-hidden="true" class="ti ti-target"></i><span>Targeting</span></div>
+<div class="wt-icon-item"><i aria-hidden="true" class="ti ti-chart-bar"></i><span>Analytics</span></div>
+<div class="wt-icon-item"><i aria-hidden="true" class="ti ti-mail"></i><span>Email</span></div>
+<div class="wt-icon-item"><i aria-hidden="true" class="ti ti-search"></i><span>SEO</span></div>
 </div>
+<div class="wt-spacer"></div><div class="wt-lower">
+<p>Campaigns engineered to convert. Every rupee spent with intention.</p>
 </div>
-<div aria-expanded="false" class="accordion-strip" data-service="brand" role="button" tabindex="0">
-<div class="accordion-header">
-<span class="accordion-number">03</span>
-<span class="accordion-title">Brand &amp; Identity</span>
-<span aria-hidden="true" class="accordion-arrow">+</span>
-</div>
-<div class="accordion-body">
-<p class="accordion-desc">Your story distilled into something people feel before they read.</p>
-<a class="accordion-link" href="work/brand.html">View Work →</a>
+<a class="wt-cta" href="work/marketing.html">View Work</a>
 </div>
 </div>
-<div aria-expanded="false" class="accordion-strip" data-service="content" role="button" tabindex="0">
-<div class="accordion-header">
-<span class="accordion-number">04</span>
-<span class="accordion-title">Content &amp; Creative</span>
-<span aria-hidden="true" class="accordion-arrow">+</span>
+<div class="wt-wrap">
+<div class="wt-center">
+<span class="wt-num">03</span>
+<span class="wt-name">Brand &amp; Identity</span>
 </div>
-<div class="accordion-body">
-<p class="accordion-desc">Content that stops the scroll and starts a conversation.</p>
-<a class="accordion-link" href="work/content.html">View Work →</a>
+<div class="wt-reveal">
+<div class="wt-upper">
+<div class="wt-icon-item"><i aria-hidden="true" class="ti ti-eye"></i><span>Vision</span></div>
+<div class="wt-icon-item"><i aria-hidden="true" class="ti ti-typography"></i><span>Typography</span></div>
+<div class="wt-icon-item"><i aria-hidden="true" class="ti ti-palette"></i><span>Colour</span></div>
+<div class="wt-icon-item"><i aria-hidden="true" class="ti ti-fingerprint"></i><span>Identity</span></div>
+</div>
+<div class="wt-spacer"></div><div class="wt-lower">
+<p>Your story distilled into something people feel before they read.</p>
+</div>
+<a class="wt-cta" href="work/brand.html">View Work</a>
 </div>
 </div>
-</div><!-- /services-accordion -->
-</div><!-- /services-container -->
+<div class="wt-wrap">
+<div class="wt-center">
+<span class="wt-num">04</span>
+<span class="wt-name">Content &amp; Creative</span>
+</div>
+<div class="wt-reveal">
+<div class="wt-upper">
+<div class="wt-icon-item"><i aria-hidden="true" class="ti ti-video"></i><span>Video</span></div>
+<div class="wt-icon-item"><i aria-hidden="true" class="ti ti-pencil"></i><span>Copywriting</span></div>
+<div class="wt-icon-item"><i aria-hidden="true" class="ti ti-camera"></i><span>Photography</span></div>
+<div class="wt-icon-item"><i aria-hidden="true" class="ti ti-wand"></i><span>Creative</span></div>
+</div>
+<div class="wt-spacer"></div><div class="wt-lower">
+<p>Content that stops the scroll and starts a conversation.</p>
+</div>
+<a class="wt-cta" href="work/content.html">View Work</a>
+</div>
+</div>
+</div>
+</div>
 </section>
 <!-- ───────────────────────────────────────
          SECTION 03 — WHY THIOTERRA
@@ -395,7 +402,6 @@
 <div class="wc-bar"></div>
 </div>
 <!-- Card 02 — Violet -->
-
 <!-- Card 03 — Cyan -->
 <div class="wc" data-gh="195" data-gl="76" data-gs="80" style="--wc-a:#4FD1FF;">
 <div class="wc-clip">

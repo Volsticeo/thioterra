@@ -2160,3 +2160,241 @@ body.casestudy-open {
   min-height: unset !important;
   padding-top: calc(var(--nav-height) + 1.5rem) !important;
 }
+
+/* ═══════════════════════════════════════════════════════
+   SANDWICH DISCIPLINE CARDS — services section
+   Mechanic: wt-reveal sits centered behind wt-center.
+   On hover it grows in height, revealing top and bottom.
+═══════════════════════════════════════════════════════ */
+
+/* ── Section layout ──────────────────────────────────── */
+.services-section {
+  position: relative;
+  z-index: var(--z-content);
+  padding: var(--section-padding) 0;
+}
+
+.services-container {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: clamp(1.5rem, 5vw, 4rem);
+}
+
+.services-header {
+  margin-bottom: 4rem;
+}
+
+.services-heading {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  color: var(--color-text);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+
+.services-subtext {
+  font-size: clamp(0.9rem, 1.2vw, 1rem);
+  color: var(--color-text-muted);
+}
+
+/* ── 4-card grid ─────────────────────────────────────── */
+.wt-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+  margin-top: 2rem;
+}
+
+/* ── Card wrapper ─────────────────────────────────────── */
+.wt-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 96px; /* center card height */
+  cursor: pointer;
+}
+
+/* ── Center face card — always visible ───────────────── */
+.wt-center {
+  position: absolute;
+  width: 100%;
+  height: 96px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 1.25rem;
+  gap: 0.35rem;
+  border-radius: 16px;
+  isolation: isolate;
+
+  /* Liquid glass */
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.09) 0%,
+    rgba(255,255,255,0.04) 100%
+  );
+  backdrop-filter: blur(28px) saturate(1.8) brightness(1.06);
+  -webkit-backdrop-filter: blur(28px) saturate(1.8) brightness(1.06);
+  border: 0.5px solid rgba(255,255,255,0.13);
+  box-shadow:
+    inset  0   1px 0 rgba(255,255,255,0.40),
+    inset  0  -1px 0 rgba(0,0,0,0.18),
+    inset  1px 0   0 rgba(255,255,255,0.12),
+    inset -1px 0   0 rgba(255,255,255,0.08);
+  transition: border-radius 0.4s cubic-bezier(0.4,0,0.2,1),
+              background 0.3s ease;
+
+  /* Noise grain */
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.032'/%3E%3C/svg%3E"),
+    linear-gradient(135deg, rgba(255,255,255,0.09) 0%, rgba(255,255,255,0.04) 100%);
+  background-size: 180px, 100%;
+}
+
+.wt-num {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  letter-spacing: 0.16em;
+  color: rgba(215,190,148,0.55);
+}
+
+.wt-name {
+  font-family: var(--font-heading);
+  font-size: clamp(0.8rem, 1.1vw, 0.95rem);
+  color: rgba(255,255,255,0.88);
+  letter-spacing: 0.01em;
+  line-height: 1.3;
+}
+
+/* ── Reveal card — behind center, expands both ways ─── */
+.wt-reveal {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 96px; /* matches center at rest — fully hidden */
+  z-index: 1;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: height 0.45s cubic-bezier(0.4,0,0.2,1);
+  display: flex;
+  flex-direction: column;
+
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.028'/%3E%3C/svg%3E"),
+    linear-gradient(180deg,
+      rgba(18,14,36,0.96) 0%,
+      rgba(14,11,28,0.98) 100%
+    );
+  background-size: 180px, 100%;
+  border: 0.5px solid rgba(255,255,255,0.09);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.10),
+    inset 0 -1px 0 rgba(0,0,0,0.30),
+    0 24px 48px rgba(0,0,0,0.55);
+}
+
+/* ── Upper — icon grid (slides in from top) ──────────── */
+.wt-upper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem 0.4rem;
+  padding: 0.7rem 1.25rem 0.6rem;
+  flex-shrink: 0;
+}
+
+.wt-icon-item {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 8px;
+}
+
+.wt-icon-item i {
+  display: inline-block;
+  flex-shrink: 0;
+  font-size: 18px;
+  color: rgba(218, 196, 158, 0.78);
+  line-height: 1;
+}
+
+.wt-spacer {
+  height: 96px; /* matches wt-center — creates gap so text clears the face card */
+  flex-shrink: 0;
+}
+
+.wt-icon-item span {
+  font-family: var(--font-body);
+  font-size: 0.58rem;
+  color: rgba(255,255,255,0.32);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ── Lower — description text ─────────────────────────── */
+.wt-lower {
+  flex: 1;
+  padding: 0 1.25rem 0.5rem;
+  display: flex;
+  align-items: flex-end;
+}
+
+.wt-lower p {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.46);
+  line-height: 1.72;
+  margin: 0;
+}
+
+/* ── View Work CTA bar — "Healthy" equivalent ─────────── */
+.wt-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0.6rem 1.25rem;
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgba(218, 196, 158, 0.80);
+  background: rgba(218, 196, 158, 0.05);
+  border-top: 0.5px solid rgba(218, 196, 158, 0.18);
+  flex-shrink: 0;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.wt-cta::after {
+  content: '→';
+  font-size: 0.7rem;
+  transition: transform 0.2s ease;
+}
+
+/* ── Hover state ──────────────────────────────────────── */
+.wt-wrap:hover .wt-center {
+  border-radius: 0;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.032'/%3E%3C/svg%3E"),
+    linear-gradient(135deg, rgba(255,255,255,0.13) 0%, rgba(255,255,255,0.06) 100%);
+  background-size: 180px, 100%;
+}
+
+.wt-wrap:hover .wt-reveal {
+  height: 270px;
+  transform: translateY(-45%);
+}
+
+.wt-wrap:hover .wt-cta {
+  background: rgba(218, 196, 158, 0.09);
+  color: rgba(218, 196, 158, 1.0);
+}
+
+.wt-wrap:hover .wt-cta::after {
+  transform: translateX(3px);
+}
