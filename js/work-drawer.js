@@ -1,11 +1,19 @@
 // Work Case Study Drawer
 document.addEventListener('DOMContentLoaded', () => {
-  const drawer   = document.getElementById('work-drawer');
-  const backdrop = document.getElementById('drawer-backdrop');
-  const closeBtn = document.getElementById('drawer-close');
-  const cards    = document.querySelectorAll('.work-card[data-title]');
+  const drawer      = document.getElementById('work-drawer');
+  const backdrop    = document.getElementById('drawer-backdrop');
+  const closeBtn    = document.getElementById('drawer-close');
+  const drawerPanel = document.querySelector('.work-drawer-panel');
+  const cards       = document.querySelectorAll('.work-card[data-title]');
 
-  if (!drawer) return;
+  if (!drawer || !drawerPanel) return;
+
+  // Manual wheel scroll on panel — bypasses Lenis's preventDefault
+  drawerPanel.addEventListener('wheel', (e) => {
+    e.stopPropagation();
+    drawerPanel.scrollTop += e.deltaY;
+    e.preventDefault();
+  }, { passive: false });
 
   function openDrawer(card) {
     const d = card.dataset;
@@ -18,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('drawer-solution').textContent  = d.solution  || '';
     document.getElementById('drawer-results').textContent   = d.results   || '';
 
-    // Tags
     const tagsEl = document.getElementById('drawer-tags');
     tagsEl.innerHTML = '';
     if (d.tags) {
@@ -30,35 +37,33 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Open
+    // Stop Lenis + lock html overflow — no layout shift, no scroll jump
+    if (window._lenis) window._lenis.stop();
+    document.documentElement.classList.add('drawer-open');
+
     drawer.classList.add('open');
     drawer.setAttribute('aria-hidden', 'false');
-    document.body.classList.add('drawer-open');
-    if (window._lenis) window._lenis.stop();
-
-    // Scroll panel to top
-    drawer.querySelector('.work-drawer-panel').scrollTop = 0;
+    drawerPanel.scrollTop = 0;
+    closeBtn?.focus();
   }
 
   function closeDrawer() {
     drawer.classList.remove('open');
     drawer.setAttribute('aria-hidden', 'true');
-    document.body.classList.remove('drawer-open');
+
+    // Unlock and restart Lenis
+    document.documentElement.classList.remove('drawer-open');
     if (window._lenis) window._lenis.start();
   }
 
-  // Open on card click
   cards.forEach(card => {
     card.addEventListener('click', () => openDrawer(card));
     card.style.cursor = 'pointer';
   });
 
-  // Close on backdrop or button
   backdrop.addEventListener('click', closeDrawer);
-  closeBtn.addEventListener('click', closeDrawer);
-
-  // Close on Escape
+  closeBtn.addEventListener('click',  closeDrawer);
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeDrawer();
+    if (e.key === 'Escape' && drawer.classList.contains('open')) closeDrawer();
   });
 });

@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     smoothTouch: false,
   });
+  window._lenis = lenis; // expose for other scripts (work-drawer, etc.)
 
   // Correct way to sync Lenis with GSAP — only use ticker, not both
   if (typeof gsap !== 'undefined') {
