@@ -147,6 +147,22 @@ button {
 
 
 /* Grain overlay */
+#starfield {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: var(--z-stars);
+}
+
+.nebula-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: var(--z-nebula);
+}
+
 .grain-overlay {
   position: fixed;
   inset: 0;

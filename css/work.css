@@ -18,7 +18,7 @@
 .work-hero {
   position: relative;
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
 }
 
 .work-hero-mascot {
@@ -49,11 +49,10 @@
 .work-hero {
   position: relative;
   z-index: var(--z-content);
-  min-height: 60vh;
   display: flex;
-  align-items: flex-end;
-  padding-bottom: 5rem;
-  padding-top: calc(var(--nav-height) + 4rem);
+  align-items: flex-start;
+  padding-top: calc(var(--nav-height) + 1.5rem);
+  padding-bottom: 4rem;
   overflow: hidden;
 }
 

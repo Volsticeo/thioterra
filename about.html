@@ -24,11 +24,10 @@
     .about-hero {
       position: relative;
       z-index: var(--z-content);
-      min-height: 70vh;
       display: flex;
-      align-items: flex-end;
-      padding-bottom: 6rem;
-      padding-top: calc(var(--nav-height) + 5rem);
+      align-items: flex-start;
+      padding-top: calc(var(--nav-height) + 1.5rem);
+      padding-bottom: 4rem;
       overflow: hidden;
     }
 
@@ -41,7 +40,7 @@
 
     .about-hero-title {
       font-family: var(--font-heading);
-      font-size: clamp(3rem, 7vw, 7rem);
+      font-size: clamp(2.5rem, 6vw, 6rem);
       color: var(--color-text);
       line-height: 1.0;
       letter-spacing: -0.03em;
@@ -462,7 +461,7 @@
     }
 
     @media (max-width: 768px) {
-      .about-hero-title { font-size: clamp(2.5rem, 10vw, 4rem); }
+      .about-hero-title { font-size: clamp(2rem, 8vw, 3.5rem); }
     }
   </style>
 </head>

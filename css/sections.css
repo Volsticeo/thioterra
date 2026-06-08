@@ -2136,3 +2136,27 @@ body.casestudy-open {
   .wc-label, .wc-title, .wc-desc,
   .wc-bar, .wc-ghost { transition: none; }
 }
+
+/* ─── PAGE HERO SPACING FIX ─────────────────────────────
+   Overrides inline <style> blocks in about/contact/work pages.
+   Removes min-height and aligns content to top (flex-start)
+   so there's no empty space above the hero content.
+────────────────────────────────────────────────────────── */
+
+.about-hero {
+  min-height: unset !important;
+  align-items: flex-start !important;
+  padding-top: calc(var(--nav-height) + 1.5rem) !important;
+}
+
+.work-hero {
+  min-height: unset !important;
+  align-items: flex-start !important;
+  padding-top: calc(var(--nav-height) + 1.5rem) !important;
+  padding-bottom: 4rem !important;
+}
+
+.contact-section {
+  min-height: unset !important;
+  padding-top: calc(var(--nav-height) + 1.5rem) !important;
+}
