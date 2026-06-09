@@ -192,10 +192,7 @@ const TST_DATA = [
 
 (function initTestimonials() {
   const quoteEl  = document.getElementById('tst-quote');
-  const nameEl   = document.getElementById('tst-name');
-  const coEl     = document.getElementById('tst-company');
   const rowEl    = document.getElementById('tst-row');
-  const attrEl   = document.getElementById('tst-attr');
   const prevBtn  = document.getElementById('tst-prev');
   const nextBtn  = document.getElementById('tst-next');
   if (!quoteEl || !rowEl) return;
@@ -227,14 +224,10 @@ const TST_DATA = [
 
     // fade quote out → update → fade in
     quoteEl.classList.add('switching');
-    attrEl.classList.add('switching');
     setTimeout(() => {
       quoteEl.textContent = TST_DATA[idx].quote;
-      nameEl.textContent  = TST_DATA[idx].name;
-      coEl.textContent    = TST_DATA[idx].company;
-      quoteEl.classList.remove('switching');
-      attrEl.classList.remove('switching');
-    }, 340);
+          quoteEl.classList.remove('switching');
+      }, 340);
 
     // update active card
     rowEl.querySelectorAll('.tst-card').forEach((c, i) => {
@@ -249,8 +242,6 @@ const TST_DATA = [
 
   // seed first quote without animation
   quoteEl.textContent = TST_DATA[0].quote;
-  nameEl.textContent  = TST_DATA[0].name;
-  coEl.textContent    = TST_DATA[0].company;
 
   // card click
   rowEl.addEventListener('click', e => {
