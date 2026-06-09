@@ -26,13 +26,13 @@
   --font-body:     'Urbanist', sans-serif;
 
   /* Font sizes — fluid */
-  --fs-hero:    clamp(1rem, 1.8vw, 2rem);
-  --fs-h1:      clamp(2.2rem, 4.5vw, 4.5rem);
-  --fs-h2:      clamp(1.8rem, 3.5vw, 3.2rem);
-  --fs-h3:      clamp(1.2rem, 2vw, 1.6rem);
-  --fs-body:    clamp(0.95rem, 1.2vw, 1.1rem);
-  --fs-small:   clamp(0.8rem, 1vw, 0.9rem);
-  --fs-eyebrow: 0.75rem;
+  --fs-hero:    clamp(1rem, 1.8vw, 2.4rem);
+  --fs-h1:      clamp(2.2rem, 4.5vw, 6rem);
+  --fs-h2:      clamp(1.8rem, 3.5vw, 4rem);
+  --fs-h3:      clamp(1.2rem, 2vw, 2rem);
+  --fs-body:    clamp(0.95rem, 1.2vw, 1.2rem);
+  --fs-small:   clamp(0.8rem, 1vw, 1rem);
+  --fs-eyebrow: clamp(0.75rem, 0.7vw, 0.9rem);
 
   /* Spacing */
   --space-xs:   0.5rem;
@@ -43,7 +43,7 @@
   --space-2xl:  10rem;
 
   /* Layout */
-  --max-width:        1280px;
+  --max-width:        1360px;
   --nav-height:       72px;
   --section-padding:  clamp(4rem, 8vw, 10rem);
 

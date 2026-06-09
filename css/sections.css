@@ -2419,3 +2419,46 @@ body.casestudy-open {
 .wt-card-icon[data-disc="perf"]  { width: 108px; height: 108px; bottom: -12px; right: -10px; } /* target fills well */
 .wt-card-icon[data-disc="brand"] { width: 108px; height: 108px; bottom: -14px; right: -10px; } /* fingerprint is dense — keep tighter */
 .wt-card-icon[data-disc="cont"]  { width: 122px; height: 122px; bottom: -18px; right: -14px; } /* film-strip fills well */
+/* ═══════════════════════════════════════════════════════
+   LARGE SCREEN SCALING — 1536px and 1920px breakpoints
+═══════════════════════════════════════════════════════ */
+
+@media (min-width: 1536px) {
+  :root {
+    --max-width: 1480px;
+    --section-padding: clamp(8rem, 10vw, 13rem);
+  }
+
+  .wt-wrap   { height: 110px; }
+  .wt-center { height: 110px; }
+  .wt-spacer { height: 110px; }
+  .wt-wrap:hover .wt-reveal { height: 340px; }
+  .wt-name   { font-size: clamp(0.95rem, 1.2vw, 1.1rem); }
+
+  .why-cards { height: clamp(300px, 40vh, 400px); }
+
+  .nav-container { max-width: 1600px; }
+
+  .why-section::before  { font-size: clamp(8rem, 14vw, 18rem); }
+  .work-section::before { font-size: clamp(8rem, 14vw, 18rem); }
+}
+
+@media (min-width: 1920px) {
+  :root {
+    --max-width: 1680px;
+    --section-padding: clamp(10rem, 11vw, 16rem);
+  }
+
+  .wt-wrap   { height: 128px; }
+  .wt-center { height: 128px; }
+  .wt-spacer { height: 128px; }
+  .wt-wrap:hover .wt-reveal { height: 400px; }
+  .wt-name   { font-size: clamp(1rem, 1.3vw, 1.2rem); }
+
+  .why-cards { height: clamp(340px, 42vh, 460px); }
+
+  .nav-container { max-width: 1800px; }
+
+  .why-section::before  { font-size: clamp(10rem, 16vw, 22rem); }
+  .work-section::before { font-size: clamp(10rem, 16vw, 22rem); }
+}
