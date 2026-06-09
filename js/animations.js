@@ -127,13 +127,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ─── TESTIMONIALS ENTRY ────────────────────────── */
-  gsap.from('.testimonials-track', {
+  gsap.from('.tst-featured', {
     scrollTrigger: { trigger: '.testimonials-section', start: 'top 80%' },
-    opacity: 0, y: 40, duration: 0.8, ease: 'power3.out', clearProps: 'all',
+    opacity: 0, y: 40, duration: 0.9, ease: 'power3.out', clearProps: 'all',
   });
-  gsap.from('.testimonials-dots', {
-    scrollTrigger: { trigger: '.testimonials-section', start: 'top 75%' },
-    opacity: 0, y: 16, duration: 0.5, delay: 0.3, ease: 'power2.out', clearProps: 'all',
+  gsap.from('.tst-marquee-outer', {
+    scrollTrigger: { trigger: '.testimonials-section', start: 'top 70%' },
+    opacity: 0, y: 20, duration: 0.7, delay: 0.2, ease: 'power2.out', clearProps: 'all',
   });
 
   /* ─── CTA TRANSITION LINE + ENTRY ───────────────── */
@@ -156,3 +156,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 });
+/* ── Testimonials quote switcher ─────────────────────── */
+(function initTestimonials() {
+  const quoteEl  = document.getElementById('tst-quote');
+  const nameEl   = document.getElementById('tst-name');
+  const coEl     = document.getElementById('tst-company');
+  const marquee  = document.getElementById('tst-marquee');
+  const attrEl   = document.querySelector('.tst-attr');
+  if (!quoteEl || !marquee) return;
+
+  const data = [
+    { quote: 'Working with ThioTerra felt less like hiring an agency and more like gaining a partner who actually cared about where we were going.', name: 'Client Name', company: 'Company' },
+    { quote: 'The results spoke before we even launched. The strategy was sharp, the execution was sharper.',                                       name: 'Client Name', company: 'Company' },
+    { quote: 'Our brand finally looks like what we always imagined it could be.',                                                                   name: 'Client Name', company: 'Company' },
+  ];
+
+  let current = 0;
+  let timer;
+
+  function switchTo(idx) {
+    current = idx;
+    quoteEl.classList.add('switching');
+    if (attrEl) attrEl.classList.add('switching');
+    setTimeout(() => {
+      quoteEl.textContent  = data[idx].quote;
+      nameEl.textContent   = data[idx].name;
+      coEl.textContent     = data[idx].company;
+      quoteEl.classList.remove('switching');
+      if (attrEl) attrEl.classList.remove('switching');
+    }, 380);
+    marquee.querySelectorAll('.tst-card').forEach(c => {
+      c.classList.toggle('active', parseInt(c.dataset.idx) === idx);
+    });
+  }
+
+  marquee.addEventListener('click', e => {
+    const card = e.target.closest('.tst-card');
+    if (!card) return;
+    clearInterval(timer);
+    switchTo(parseInt(card.dataset.idx));
+    timer = setInterval(() => switchTo((current + 1) % data.length), 5000);
+  });
+
+  timer = setInterval(() => switchTo((current + 1) % data.length), 5000);
+})();
