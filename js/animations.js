@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
     scrollTrigger: { trigger: '.testimonials-section', start: 'top 80%' },
     opacity: 0, y: 40, duration: 0.9, ease: 'power3.out', clearProps: 'all',
   });
-  gsap.from('.tst-marquee-outer', {
+  gsap.from('.tst-row-wrap', {
     scrollTrigger: { trigger: '.testimonials-section', start: 'top 70%' },
     opacity: 0, y: 20, duration: 0.7, delay: 0.2, ease: 'power2.out', clearProps: 'all',
   });
@@ -156,47 +156,122 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 });
-/* ── Testimonials quote switcher ─────────────────────── */
+/* ── Testimonials data + renderer ───────────────────── */
+const TST_DATA = [
+  {
+    quote:   'Working with ThioTerra felt less like hiring an agency and more like gaining a partner who actually cared about where we were going.',
+    name:    'Client Name',
+    company: 'Company',
+    photo:   'assets/images/cl1.webp',
+  },
+  {
+    quote:   'The results spoke before we even launched. The strategy was sharp, the execution sharper.',
+    name:    'Client Name',
+    company: 'Company',
+    photo:   'assets/images/cl2.webp',
+  },
+  {
+    quote:   'Our brand finally looks like what we always imagined it could be.',
+    name:    'Client Name',
+    company: 'Company',
+    photo:   'assets/images/cl3.webp',
+  },
+  {
+    quote:   "ThioTerra took our vague idea and turned it into something we're genuinely proud to put in front of our customers.",
+    name:    'Client Name',
+    company: 'Company',
+    photo:   'assets/images/cl4.webp',
+  },
+  {
+    quote:   'Every deliverable felt intentional. You can tell these people actually think before they design.',
+    name:    'Client Name',
+    company: 'Company',
+    photo:   'assets/images/cl5.webp',
+  },
+];
+
 (function initTestimonials() {
   const quoteEl  = document.getElementById('tst-quote');
   const nameEl   = document.getElementById('tst-name');
   const coEl     = document.getElementById('tst-company');
-  const marquee  = document.getElementById('tst-marquee');
-  const attrEl   = document.querySelector('.tst-attr');
-  if (!quoteEl || !marquee) return;
+  const rowEl    = document.getElementById('tst-row');
+  const attrEl   = document.getElementById('tst-attr');
+  const prevBtn  = document.getElementById('tst-prev');
+  const nextBtn  = document.getElementById('tst-next');
+  if (!quoteEl || !rowEl) return;
 
-  const data = [
-    { quote: 'Working with ThioTerra felt less like hiring an agency and more like gaining a partner who actually cared about where we were going.', name: 'Client Name', company: 'Company' },
-    { quote: 'The results spoke before we even launched. The strategy was sharp, the execution was sharper.',                                       name: 'Client Name', company: 'Company' },
-    { quote: 'Our brand finally looks like what we always imagined it could be.',                                                                   name: 'Client Name', company: 'Company' },
-  ];
+  // ── Build cards ──────────────────────────────────────
+  TST_DATA.forEach((t, i) => {
+    const btn = document.createElement('button');
+    btn.className   = 'tst-card' + (i === 0 ? ' active' : '');
+    btn.dataset.idx = i;
+    btn.setAttribute('aria-label', `View testimonial from ${t.name}`);
+    btn.innerHTML = `
+      <div class="tst-card-label">
+        <span class="tst-label-name">${t.name}</span>
+        <span class="tst-label-co">${t.company}</span>
+      </div>
+      <img class="tst-photo" src="${t.photo}" alt="${t.name}" loading="lazy"
+           onerror="this.style.background='rgba(255,255,255,0.06)';this.style.border='1px solid rgba(255,255,255,0.10)';this.removeAttribute('src')">
+    `;
+    rowEl.appendChild(btn);
+  });
 
+  // ── Switch logic ─────────────────────────────────────
   let current = 0;
   let timer;
 
   function switchTo(idx) {
+    if (idx === current) return;
     current = idx;
+
+    // fade quote out → update → fade in
     quoteEl.classList.add('switching');
-    if (attrEl) attrEl.classList.add('switching');
+    attrEl.classList.add('switching');
     setTimeout(() => {
-      quoteEl.textContent  = data[idx].quote;
-      nameEl.textContent   = data[idx].name;
-      coEl.textContent     = data[idx].company;
+      quoteEl.textContent = TST_DATA[idx].quote;
+      nameEl.textContent  = TST_DATA[idx].name;
+      coEl.textContent    = TST_DATA[idx].company;
       quoteEl.classList.remove('switching');
-      if (attrEl) attrEl.classList.remove('switching');
-    }, 380);
-    marquee.querySelectorAll('.tst-card').forEach(c => {
-      c.classList.toggle('active', parseInt(c.dataset.idx) === idx);
+      attrEl.classList.remove('switching');
+    }, 340);
+
+    // update active card
+    rowEl.querySelectorAll('.tst-card').forEach((c, i) => {
+      c.classList.toggle('active', i === idx);
+      // also update label text in case name differs from initial render
+      const ln = c.querySelector('.tst-label-name');
+      const lc = c.querySelector('.tst-label-co');
+      if (ln) ln.textContent = TST_DATA[i].name;
+      if (lc) lc.textContent = TST_DATA[i].company;
     });
   }
 
-  marquee.addEventListener('click', e => {
+  // seed first quote without animation
+  quoteEl.textContent = TST_DATA[0].quote;
+  nameEl.textContent  = TST_DATA[0].name;
+  coEl.textContent    = TST_DATA[0].company;
+
+  // card click
+  rowEl.addEventListener('click', e => {
     const card = e.target.closest('.tst-card');
     if (!card) return;
     clearInterval(timer);
     switchTo(parseInt(card.dataset.idx));
-    timer = setInterval(() => switchTo((current + 1) % data.length), 5000);
+    timer = setInterval(() => switchTo((current + 1) % TST_DATA.length), 6000);
   });
 
-  timer = setInterval(() => switchTo((current + 1) % data.length), 5000);
+  // arrow buttons
+  if (prevBtn) prevBtn.addEventListener('click', () => {
+    clearInterval(timer);
+    switchTo((current - 1 + TST_DATA.length) % TST_DATA.length);
+    timer = setInterval(() => switchTo((current + 1) % TST_DATA.length), 6000);
+  });
+  if (nextBtn) nextBtn.addEventListener('click', () => {
+    clearInterval(timer);
+    switchTo((current + 1) % TST_DATA.length);
+    timer = setInterval(() => switchTo((current + 1) % TST_DATA.length), 6000);
+  });
+
+  timer = setInterval(() => switchTo((current + 1) % TST_DATA.length), 6000);
 })();
