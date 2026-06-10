@@ -199,8 +199,40 @@
   position: relative;
   z-index: var(--z-content);
   padding: var(--section-padding) 0;
-  background-color: #08061A;
+  background-color: #010108;
+  isolation: isolate;
   overflow: hidden;
+}
+
+.why-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    #010108 0%,
+    #010108 8%,
+    transparent 35%,
+    transparent 65%,
+    #010108 92%,
+    #010108 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.why-siderays {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.why-siderays canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
 }
 
 .why-section::before {
@@ -216,7 +248,7 @@
   line-height: 1;
   pointer-events: none;
   user-select: none;
-  z-index: 0;
+  z-index: 2;
 }
 
 .why-container {
@@ -224,7 +256,7 @@
   margin-inline: auto;
   padding-inline: clamp(1.5rem, 5vw, 4rem);
   position: relative;
-  z-index: 1;
+  z-index: 3;
 }
 
 .why-header {
@@ -2037,13 +2069,6 @@ body.casestudy-open {
    WHY SECTION — expanding cards + BorderGlow
 ═══════════════════════════════════════════════════════ */
 
-.why-section {
-  position: relative;
-  z-index: var(--z-content);
-  padding: var(--section-padding) 0;
-  background: transparent;
-}
-
 .why-section::before {
   content: 'WHY';
   position: absolute;
@@ -2057,7 +2082,7 @@ body.casestudy-open {
   line-height: 1;
   pointer-events: none;
   user-select: none;
-  z-index: 0;
+  z-index: 2;
 }
 
 .why-container {
@@ -2065,7 +2090,7 @@ body.casestudy-open {
   margin-inline: auto;
   padding-inline: clamp(1.5rem, 5vw, 4rem);
   position: relative;
-  z-index: 1;
+  z-index: 3;
 }
 
 .why-header { margin-bottom: 3rem; }
