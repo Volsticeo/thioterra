@@ -164,6 +164,7 @@
   background: var(--color-accent);
   color: #16192C;
   border-radius: 100px;
+  border: 5px solid rgba(249, 217, 154, 0.28);
   font-family: 'Urbanist', sans-serif;
   font-size: 0.88rem;
   font-weight: 600;
@@ -172,17 +173,26 @@
   flex-shrink: 0;
   position: relative;
   z-index: 1;
-  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   box-shadow: 0 2px 12px rgba(249,217,154,0.25);
   text-shadow: none;
 }
 .nav-cta:hover {
   background: #f0cc80;
+  border-color: rgba(249, 217, 154, 0.50);
   transform: translateY(-1px);
   box-shadow: 0 4px 20px rgba(249,217,154,0.38);
 }
-.nav-cta svg { width: 14px; height: 14px; transition: transform 0.2s ease; }
-.nav-cta:hover svg { transform: translateX(2px); }
+.nav-cta:active {
+  border-width: 3px;
+}
+.nav-cta:hover .btn-arrow {
+  animation: jello-vertical 0.9s both;
+  transform-origin: left;
+  display: inline-flex;
+}
+.nav-cta .btn-arrow { display: inline-flex; align-items: center; }
+.nav-cta .btn-arrow svg { width: 14px; height: 14px; }
 
 /* ─── MEGA MENU — truly viewport-fixed ───────────────── */
 /* Lives as sibling of .nav-container inside .navbar     */
@@ -586,6 +596,7 @@
   font-weight: 600;
   font-size: 1rem;
   border-radius: 100px;
+  border: 5px solid rgba(249, 217, 154, 0.28);
   letter-spacing: 0.04em;
   align-self: flex-start;
   transition: background 0.2s ease, transform 0.2s ease;

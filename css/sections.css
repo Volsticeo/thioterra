@@ -2042,6 +2042,15 @@ body.casestudy-open {
 .cta-button:hover::before {
   transform: translateX(0);
 }
+.cta-button:hover .btn-arrow {
+  animation: jello-vertical 0.9s both;
+  transform-origin: left;
+  display: inline-flex;
+}
+.cta-button .btn-arrow {
+  display: inline-flex;
+  align-items: center;
+}
 
 .cta-button span,
 .cta-button svg {

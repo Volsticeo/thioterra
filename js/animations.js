@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     gsap.from('.cta-heading', { scrollTrigger: { trigger: ctaSection, start: 'top 70%' }, opacity: 0, y: 40, duration: 0.8, ease: 'power3.out', clearProps: 'all' });
     gsap.from('.cta-subtext',  { scrollTrigger: { trigger: ctaSection, start: 'top 65%' }, opacity: 0, y: 30, duration: 0.7, delay: 0.1, ease: 'power3.out', clearProps: 'all' });
-    gsap.from('.cta-button',   { scrollTrigger: { trigger: ctaSection, start: 'top 60%' }, opacity: 0, scale: 0.9, duration: 0.6, delay: 0.2, ease: 'back.out(1.4)', clearProps: 'all' });
+    gsap.from('#cta .cta-button', { scrollTrigger: { trigger: ctaSection, start: 'top 60%' }, opacity: 0, scale: 0.9, duration: 0.6, delay: 0.2, ease: 'back.out(1.4)', clearProps: 'all' });
   }
 
 
