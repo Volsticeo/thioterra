@@ -17,8 +17,35 @@ document.addEventListener('DOMContentLoaded', () => {
   const mascot = document.createElement('div');
   mascot.className = 'mascot-float';
   mascot.setAttribute('aria-hidden', 'true');
-  mascot.innerHTML = `<img src="assets/images/mascot.svg" alt="" class="mascot-img" />`;
+  mascot.innerHTML = `
+    <img src="assets/images/mascot.svg"      alt="" class="mascot-img mascot-annoyed" />
+    <img src="assets/images/mascot_smug.svg" alt="" class="mascot-img mascot-smug"    />
+  `;
   document.body.appendChild(mascot);
+
+  // ─── FACE SWAP — smug on hover of any interactive el ──
+  const INTERACTIVE = [
+    'a', 'button', '[role="button"]',
+    'input', 'select', 'textarea', 'label',
+    '.work-card', '.wk-box', '.accordion-strip',
+    '.nav-link', '.nav-cta', '.mobile-cta',
+    '.tst-card', '.tst-arrow',
+    '.wt-cta', '.wc', '.wt-wrap', '[tabindex="0"]',
+  ].join(', ');
+
+  document.addEventListener('mouseover', e => {
+    if (e.target.closest(INTERACTIVE)) {
+      mascot.classList.add('mascot-is-smug');
+    }
+  });
+
+  document.addEventListener('mouseout', e => {
+    // Only revert when truly leaving ALL interactive elements
+    const to = e.relatedTarget;
+    if (!to || !to.closest(INTERACTIVE)) {
+      mascot.classList.remove('mascot-is-smug');
+    }
+  });
 
   // ─── SECTION COLOR MAP ───────────────────────────────
   // Each section gets a hue-rotate value and a glow color

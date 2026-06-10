@@ -328,6 +328,11 @@ p {
   will-change: filter, transform;
 }
 
+/* Smug face hidden by default; shown on interactive hover */
+.mascot-smug                           { display: none; }
+.mascot-float.mascot-is-smug .mascot-annoyed { display: none; }
+.mascot-float.mascot-is-smug .mascot-smug    { display: block; }
+
 /* ─── HOME PAGE BG — index.html only ────────────────── */
 body.page-home {
   background-image:
