@@ -72,26 +72,10 @@
 }
 
 /* ─── FONT FACE — PROJECT SPACE ──────────────────────── */
-@font-face {
-  font-family: 'Project Space';
-  src: url('../assets/fonts/ProjectSpace.woff2') format('woff2'),
-       url('../assets/fonts/ProjectSpace.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
-  font-display: block;
-}
+/* @font-face Project Space — add CDN src here once source is confirmed */
 
 /* ─── FONT FACE — POLARIS ────────────────────────────── */
-@font-face {
-  font-family: 'Polaris';
-  src: url('../assets/fonts/Polaris.woff2') format('woff2'),
-       url('../assets/fonts/Polaris.woff') format('woff'),
-       url('../assets/fonts/Polaris.otf') format('opentype'),
-       url('../assets/fonts/Polaris.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: block;
-}
+/* @font-face Polaris — add CDN src here once source is confirmed */
 
 /* ─── RESET ──────────────────────────────────────────── */
 *, *::before, *::after {

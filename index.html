@@ -80,8 +80,6 @@
 <!-- ═══════════════════════════════════════════
        FONTS — GOOGLE FONTS
   ═══════════════════════════════════════════ -->
-<link as="font" crossorigin="" href="assets/fonts/Polaris.woff2" rel="preload" type="font/woff2"/>
-<link as="font" crossorigin="" href="assets/fonts/ProjectSpace.woff2" rel="preload" type="font/woff2"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
@@ -89,7 +87,8 @@
        STYLESHEETS
   ═══════════════════════════════════════════ -->
 <link href="css/global.css" rel="stylesheet"/>
-<link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.29.0/dist/tabler-icons.min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.29.0/dist/tabler-icons.min.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
+<noscript><link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.29.0/dist/tabler-icons.min.css" rel="stylesheet"/></noscript>
 <link href="css/navbar.css" rel="stylesheet"/>
 <link href="css/hero.css" rel="stylesheet"/>
 <link href="css/sections.css" rel="stylesheet"/>
@@ -97,7 +96,6 @@
 <!-- ═══════════════════════════════════════════
        PRELOAD CRITICAL ASSETS
   ═══════════════════════════════════════════ -->
-<link as="style" href="css/global.css" rel="preload"/>
 <link as="script" href="js/main.js" rel="preload"/>
 </head>
 <body class="page-home">
@@ -645,7 +643,7 @@
 <!-- Lenis smooth scroll -->
 <script defer="" src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
 <!-- ThioTerra scripts -->
-<script src="js/three.min.js"></script>
+<script defer="" src="js/three.min.js"></script>
 <script defer="" src="js/color-bends.js"></script>
 <script defer="" src="js/side-rays.js"></script>
 <script defer="" src="js/main.js"></script>

@@ -191,7 +191,6 @@ window.addEventListener('load', function initColorBends() {
     antialias:           false,
     powerPreference:     'high-performance',
     alpha:               true,
-    preserveDrawingBuffer: true,  // needed for drawImage mirror copy
   });
 
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
