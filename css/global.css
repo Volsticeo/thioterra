@@ -356,6 +356,13 @@ body.page-home {
   background-repeat: no-repeat, no-repeat;
   background-attachment: scroll, scroll;
 }
+
+@media (max-width: 768px) {
+  body.page-home {
+    background-size: 100% auto, 100% auto;
+    background-position: top center, top center;
+  }
+}
 /* ─── JELLO ARROW ANIMATION ──────────────────────────── */
 @keyframes jello-vertical {
   0%   { transform: scale3d(1, 1, 1); }
