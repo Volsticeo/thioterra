@@ -441,3 +441,57 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ── Mega-cards on work overview page ─────────────────────────────
+   Layout : 1 row × 4 cards, 250px columns, 24px gap
+   Scale  : 0.97 vs navbar reference (258px → 250px)
+──────────────────────────────────────────────────────────────────── */
+.mega-grid.work-categories-grid {
+  grid-template-columns: repeat(4, 250px);
+  justify-content: center;
+  max-width: unset;
+  width: 100%;
+  gap: 24px;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 4rem);
+}
+
+.mega-grid.work-categories-grid .mc-inner {
+  border-radius: 27px;
+}
+.mega-grid.work-categories-grid .mc-glass {
+  inset: 7px;
+  border-radius: 23px;
+  border-top-right-radius: 100%;
+}
+
+/* Circles × 0.97 */
+.mega-grid.work-categories-grid .mc-circle1 { width: 93px; top:  6px; right:  6px; }
+.mega-grid.work-categories-grid .mc-circle2 { width: 72px; top:  9px; right:  9px; }
+.mega-grid.work-categories-grid .mc-circle3 { width: 52px; top: 14px; right: 14px; }
+.mega-grid.work-categories-grid .mc-circle4 { width: 35px; top: 20px; right: 20px; }
+.mega-grid.work-categories-grid .mc-circle5 { width: 23px; top: 23px; right: 23px; }
+
+/* Content × 0.97 */
+.mega-grid.work-categories-grid .mc-content {
+  padding: 72px 27px 0 19px;
+}
+.mega-grid.work-categories-grid .mc-eyebrow {
+  font-size: 0.63rem;
+  letter-spacing: 0.18em;
+  margin-bottom: 7px;
+}
+.mega-grid.work-categories-grid .mc-title {
+  font-size: 1.02rem;
+  line-height: 1.25;
+}
+.mega-grid.work-categories-grid .mc-desc {
+  font-size: 0.76rem;
+  margin-top: 7px;
+}
+.mega-grid.work-categories-grid .mc-bottom {
+  padding: 8px 19px 19px;
+}
+.mega-grid.work-categories-grid .mc-cta {
+  font-size: 0.73rem;
+  gap: 6px;
+}
