@@ -38,10 +38,12 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ─── ACCORDION ENTRY ───────────────────────────── */
-  gsap.from('.accordion-strip', {
-    scrollTrigger: { trigger: '.services-accordion', start: 'top 95%' },
-    opacity: 0, y: 15, stagger: 0.08, duration: 0.5, ease: 'power2.out', clearProps: 'all',
-  });
+  if (document.querySelector('.services-accordion')) {
+    gsap.from('.accordion-strip', {
+      scrollTrigger: { trigger: '.services-accordion', start: 'top 95%' },
+      opacity: 0, y: 15, stagger: 0.08, duration: 0.5, ease: 'power2.out', clearProps: 'all',
+    });
+  }
 
   /* ─── WHY SECTION ENTRY ─────────────────────────── */
   gsap.from('.why-header', {
@@ -49,20 +51,20 @@ document.addEventListener('DOMContentLoaded', () => {
     opacity: 0, y: 30, duration: 0.7, ease: 'power3.out', clearProps: 'all',
   });
 
-  gsap.from('.why-card', {
-    scrollTrigger: { trigger: '.why-grid', start: 'top 85%' },
+  gsap.from('.wc', {
+    scrollTrigger: { trigger: '.why-cards', start: 'top 85%' },
     opacity: 0, y: 40, stagger: 0.15, duration: 0.7, ease: 'power3.out', clearProps: 'all',
   });
 
   /* ─── WHY → WORK MORPH ──────────────────────────── */
-  const whyCards   = document.querySelectorAll('.why-card');
-  const whyGrid    = document.querySelector('.why-grid');
+  const whyCards   = document.querySelectorAll('.wc');
+  const whyGrid    = document.querySelector('.why-cards');
   const whySection = document.querySelector('.why-section');
   const workSection = document.querySelector('.work-section');
 
   if (whySection && workSection && whyCards.length) {
     let entered = false;
-    ScrollTrigger.create({ trigger: '.why-grid', start: 'top 85%', once: true, onEnter: () => { entered = true; } });
+    ScrollTrigger.create({ trigger: '.why-cards', start: 'top 85%', once: true, onEnter: () => { entered = true; } });
 
     ScrollTrigger.create({
       trigger: whySection, start: 'bottom 70%', end: 'bottom 5%', scrub: 1.2,

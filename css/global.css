@@ -75,7 +75,13 @@
 /* @font-face Project Space — add CDN src here once source is confirmed */
 
 /* ─── FONT FACE — POLARIS ────────────────────────────── */
-/* @font-face Polaris — add CDN src here once source is confirmed */
+@font-face {
+  font-family: 'Polaris';
+  src: url('../assets/fonts/Polaris.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
 
 /* ─── RESET ──────────────────────────────────────────── */
 *, *::before, *::after {
